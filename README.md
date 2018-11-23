@@ -1,3 +1,2 @@
-# Quasar App
-
-> WIP
+# Run develop
+`quasar dev -m electron`
