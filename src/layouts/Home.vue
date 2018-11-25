@@ -8,6 +8,7 @@
           <!-- Quasar App
           <div slot="subtitle">Running on Quasar v{{ $q.version }}</div> -->
         </q-toolbar-title>
+        <span>Hi, {{ currentUser.name }}</span>
         <q-btn
           flat
           dense
@@ -54,13 +55,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import { openURL } from 'quasar'
 
 export default {
   name: 'home',
   data () {
     return {
-      // leftDrawerOpen: this.$q.platform.is.desktop
       leftDrawerOpen: false
     }
   },
@@ -69,7 +71,10 @@ export default {
     logout () {
       this.$router.push('/logout')
     }
-  }
+  },
+  computed: {
+			...mapGetters({ currentUser: 'currentUser' })
+		}
 }
 </script>
 
