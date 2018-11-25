@@ -1,21 +1,27 @@
 <template>
-	<div>
-    <q-input type="email" v-model="email" float-label="Email" autofocus :error="$v.email.$error" @blur="$v.email.$touch"/>
-    <q-input v-model="password" type="password" float-label="Password" no-pass-toggle	:error="$v.password.$error" @blur="$v.password.$touch"/>
-  </div>
+	<q-layout class="row justify-center items-center">
+			<div class="col-5">
+				<q-field>
+					<q-input type="email" v-model="email" float-label="Email" autofocus :error="$v.email.$error" @blur="$v.email.$touch"/>
+					<q-input v-model="password" type="password" float-label="Password" no-pass-toggle	:error="$v.password.$error" @blur="$v.password.$touch" @keyup.enter.native="login"/>
+					<q-btn icon="mdi-login-variant" color="primary" @click="login" class="q-mt-sm" :disable="$v.$invalid" size="lg" label="Login"></q-btn>
+				</q-field>
+			</div>
+	</q-layout>
+	
 </template>
 
 <script>
+	import { Notify } from 'quasar'
   import { required, email } from 'vuelidate/lib/validators'
-
 	import { mapGetters } from 'vuex'
 	import { authen } from '../backend/services'
-
+	
   export default {
     name: 'login',
 		data: () => ({
-      email: '',
-      password: ''
+      email: 'thaihoang.nguyen@acomsolutions.com',
+      password: 'rivaldo'
     }),
     validations: {
       email: { required, email },
@@ -34,7 +40,10 @@
 			login() {
 				authen(this.email, this.password).then((result)=> {
 					if(result) this.loginSuccessful(result.token)
-					else this.loginFailed()
+					else {
+						this.loginFailed()
+						this.$q.notify({message: "Login failed", position: "bottom-right", color: "tertiary", icon:"mdi-alert-box"})
+					}
 				}).catch((err) => {
           console.log('err', err)
         })
@@ -44,13 +53,11 @@
 					this.loginFailed()
 					return
 				}
-
 				localStorage.token = token
 				this.$store.dispatch('login')
 				this.$router.replace(this.$route.query.redirect || '/home')
 			},
 			loginFailed () {
-				this.form.error = 'Login failed!'
 				this.$store.dispatch('logout')
 				delete localStorage.token
 			},
