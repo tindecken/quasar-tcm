@@ -34,4 +34,5 @@ export default {
 </script>
 
 <style>
+  #q-app { height: 100% }
 </style>
