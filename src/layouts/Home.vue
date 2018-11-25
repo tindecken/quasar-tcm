@@ -36,7 +36,7 @@
           <q-item-side icon="mdi-theme-light-dark" />
           <q-item-main label="Switch Theme"/>
         </q-item>
-        <q-item>
+        <q-item @click.native="logout">
           <q-item-side icon="mdi-power" />
           <q-item-main label="Logout"/>
         </q-item>
@@ -61,7 +61,10 @@ export default {
     }
   },
   methods: {
-    openURL
+    openURL,
+    logout () {
+      this.$router.push('/logout')
+    }
   }
 }
 </script>

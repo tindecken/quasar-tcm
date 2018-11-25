@@ -42,7 +42,7 @@
 					if(result) this.loginSuccessful(result.token)
 					else {
 						this.loginFailed()
-						this.$q.notify({message: "Login failed", position: "bottom-right", color: "tertiary", icon:"mdi-alert-box"})
+						this.$q.notify({message: "Login error", position: "bottom-right", color: "tertiary", icon:"mdi-alert-box"})
 					}
 				}).catch((err) => {
           console.log('err', err)
