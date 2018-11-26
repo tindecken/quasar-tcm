@@ -21,5 +21,10 @@ export default {
 </script>
 
 <style scoped>
-
+  .q-toolbar {
+    min-height: initial;
+    padding: 0px;
+    font-size: 12px;
+    line-height: 22px;
+  }
 </style>

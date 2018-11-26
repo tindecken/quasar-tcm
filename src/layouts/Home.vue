@@ -25,7 +25,14 @@
       </q-list>
     </q-layout-drawer>
     <q-page-container>
-      <router-view />
+      <Split :gutterSize="4">
+        <SplitArea :size="25">
+          d  
+        </SplitArea>
+        <SplitArea :size="75">
+          b
+        </SplitArea>
+      </Split>
     </q-page-container>
     <q-layout-footer>
       <app-footer></app-footer>
