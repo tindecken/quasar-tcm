@@ -7,6 +7,7 @@ module.exports = function (ctx) {
       'i18n',
       'axios',
       'vuelidate',
+      'vue-split-panel'
     ],
     css: [
       'app.styl'

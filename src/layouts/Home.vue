@@ -27,10 +27,10 @@
     <q-page-container>
       <Split :gutterSize="4">
         <SplitArea :size="25">
-          d  
+          <test-plan></test-plan>
         </SplitArea>
         <SplitArea :size="75">
-          b
+          <test-lab></test-lab>
         </SplitArea>
       </Split>
     </q-page-container>
@@ -43,14 +43,15 @@
 <script>
 import AppFooter from '../components/AppFooter'
 import AppHeader from '../components/AppHeader'
-
+import TestPlan from '../components/TestPlan'
+import TestLab from '../components/TestLab'
 import { mapGetters } from 'vuex'
 
 import { openURL } from 'quasar'
 
 export default {
   name: 'home',
-  components: { AppFooter, AppHeader },
+  components: { AppFooter, AppHeader, TestPlan, TestLab },
   data () {
     return {
       leftDrawerOpen: false
@@ -75,4 +76,8 @@ export default {
   .q-layout-footer {
     height: 22px;
   }
+  .q-layout-page-container {
+    height: 100vh;
+  }
+  
 </style>

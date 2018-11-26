@@ -1,3 +1,5 @@
 
 Tips:
   ☐ QButton sử dụng label thay vì >text<
+Todo:
+  ☐ Cho màu gutter là primary or secondary gì đó, miễn sao lấy trong hệ color là được
