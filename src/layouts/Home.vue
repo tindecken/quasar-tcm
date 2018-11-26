@@ -1,24 +1,7 @@
 <template>
   <q-layout view="hHh LpR fFf">
     <q-layout-header>
-      <q-toolbar
-        color="primary"
-      >
-        <q-toolbar-title>
-          <!-- Quasar App
-          <div slot="subtitle">Running on Quasar v{{ $q.version }}</div> -->
-        </q-toolbar-title>
-        <span>Hi, {{ currentUser.name }}</span>
-        <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-        >
-          <q-icon name="mdi-settings" />
-        </q-btn>
-      </q-toolbar>
+      <app-header></app-header>
     </q-layout-header>
 
     <q-layout-drawer
@@ -52,13 +35,15 @@
 
 <script>
 import AppFooter from '../components/AppFooter'
+import AppHeader from '../components/AppHeader'
+
 import { mapGetters } from 'vuex'
 
 import { openURL } from 'quasar'
 
 export default {
   name: 'home',
-  components: { AppFooter },
+  components: { AppFooter, AppHeader },
   data () {
     return {
       leftDrawerOpen: false
@@ -68,11 +53,14 @@ export default {
     openURL,
     logout () {
       this.$router.push('/logout')
+    },
+    openLeftDrawer() {
+      this.leftDrawerOpen = !this.leftDrawerOpen;
     }
   },
-  computed: {
-			...mapGetters({ currentUser: 'currentUser' })
-		}
+  created(){
+    this.$root.$on("openLeftDrawer", this.openLeftDrawer);
+  }, 
 }
 </script>
 
