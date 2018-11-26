@@ -45,22 +45,20 @@
       <router-view />
     </q-page-container>
     <q-layout-footer>
-      <q-toolbar color="primary">
-        <q-toolbar-title>
-          Footer
-        </q-toolbar-title>
-      </q-toolbar>
+      <app-footer></app-footer>
     </q-layout-footer>
   </q-layout>
 </template>
 
 <script>
+import AppFooter from '../components/AppFooter'
 import { mapGetters } from 'vuex'
 
 import { openURL } from 'quasar'
 
 export default {
   name: 'home',
+  components: { AppFooter },
   data () {
     return {
       leftDrawerOpen: false
@@ -78,5 +76,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .q-layout-footer {
+    height: 22px;
+  }
 </style>
