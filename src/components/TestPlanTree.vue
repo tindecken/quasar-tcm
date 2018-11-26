@@ -1,12 +1,12 @@
 <template>
   <div>
-    Test Plan
+    Test Plan Tree
   </div>
 </template>
 
 <script>
 export default {
-  name: "test-plan",
+  name: "test-plan-tree",
   data() {
     return {};
   },

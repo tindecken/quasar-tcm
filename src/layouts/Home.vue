@@ -27,10 +27,15 @@
     <q-page-container>
       <Split :gutterSize="4">
         <SplitArea :size="25">
-          <test-plan></test-plan>
+          <q-tabs class="shadow-1" animated align="justify" color="primary" v-model="selectedTab">
+            <q-tab name="testplan" slot="title" label="Test Plan" />
+            <q-tab name="testlab" slot="title" color="secondary" label="Test Lab" />
+            <q-tab-pane keep-alive name="testplan"><test-plan-tree></test-plan-tree></q-tab-pane>
+            <q-tab-pane keep-alive name="testlab"><test-lab-tree></test-lab-tree></q-tab-pane>
+          </q-tabs>
         </SplitArea>
         <SplitArea :size="75">
-          <test-lab></test-lab>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </SplitArea>
       </Split>
     </q-page-container>
@@ -43,18 +48,19 @@
 <script>
 import AppFooter from '../components/AppFooter'
 import AppHeader from '../components/AppHeader'
-import TestPlan from '../components/TestPlan'
-import TestLab from '../components/TestLab'
+import TestPlanTree from '../components/TestPlanTree'
+import TestLabTree from '../components/TestLabTree'
 import { mapGetters } from 'vuex'
 
 import { openURL } from 'quasar'
 
 export default {
   name: 'home',
-  components: { AppFooter, AppHeader, TestPlan, TestLab },
+  components: { AppFooter, AppHeader, TestPlanTree, TestLabTree },
   data () {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      selectedTab: 'testplan',
     }
   },
   methods: {
