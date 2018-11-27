@@ -1,10 +1,9 @@
 <template>
-  <div>
-    Test Lab Tree
-  </div>
+  <div>TestLabTree</div>
 </template>
 
 <script>
+
 export default {
   name: "test-lab-tree",
   data() {
@@ -15,8 +14,6 @@ export default {
       this.$electron.shell.openExternal(link);
     }
   },
-  created () {
-  },   
 };
 </script>
 
