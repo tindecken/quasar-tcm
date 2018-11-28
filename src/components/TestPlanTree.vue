@@ -2,13 +2,18 @@
   <div>
   <q-input
     color="secondary"
-    stack-label="Filter"
     v-model="tickFilter"
-    class="q-ma-none"
+    class="q-mb-sm"
     clearable
+    type="text"
+    autofocus
+    placeholder="Type to search"
+    :before="[{icon: 'mdi-magnify', handler () {}}]"
   />
-  <span>{{selected}}</span>
+  <q-btn outline dense color="primary" icon="mdi-arrow-collapse-all" size="md"  v-on:click="collapseAll()"/>
+  <q-btn outline dense color="primary" icon="mdi-arrow-expand-all" size="md"  v-on:click="expandAll()"/>
   <q-tree
+    default-expand-all
     :nodes="tlTreeViewData"
     node-key="_id"
     label-key="name"
@@ -16,8 +21,16 @@
     :ticked.sync="ticked"
     :filter="tickFilter"
     :selected.sync="selected"
-    default-expand-all
-  />
+    ref="tlTree"
+  >
+    <div slot="default-header" slot-scope="prop">
+      <q-icon name="mdi-folder-outline" v-if="prop.node.type === 'category'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
+      <q-icon name="mdi-file-document-box-outline" v-else-if="prop.node.type === 'testsuite'" size="18px" class="q-mr-sm"  v-bind:class="prop.node.status"/>
+      <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
+      <q-icon name="mdi-format-list-bulleted" v-else-if="prop.node.type === 'testcase'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
+      <span v-on:click="getNodeByKey(prop.node._id)">{{ prop.node.name }}</span>
+    </div>
+  </q-tree>
   </div>
 </template>
 
@@ -37,6 +50,15 @@ export default {
   methods: {
     open(link) {
       this.$electron.shell.openExternal(link);
+    },
+    collapseAll: function () {
+      this.$refs.tlTree.collapseAll()
+    },
+    expandAll: function () {
+      this.$refs.tlTree.expandAll()
+    },
+    getNodeByKey(key) {
+      console.log('Node', this.$refs.tlTree.getNodeByKey(key))
     }
   },
   created () {
@@ -44,6 +66,7 @@ export default {
       this.tlTreeViewData = result
     })
   },
+    
   computed: {
     tlTreeViewData:{
       get () {
@@ -57,5 +80,25 @@ export default {
 };
 </script>
 
-<style scoped>
+<!-- Notice lang="stylus" -->
+<style lang="stylus">
+// "variables" is a Webpack alias (provided out of the box by Quasar CLI)
+@import '~variables'
+
+.q-icon {
+  vertical-align: baseline;
+}
+
+.PASS {
+  color: $secondary;
+}
+.FAIL {
+  color: #f56c6c;
+}
+.PARTIAL {
+  color: #e6a23c;
+}
+.RUNNING {
+  color: #909399;
+}
 </style>
