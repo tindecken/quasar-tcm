@@ -1,12 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import modules from './modules'
+import global from './global'
+import testplan from './testplan'
+import auth from './auth'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  modules,
-  // strict: process.env.NODE_ENV !== 'production' //original
-  strict: false
-})
+/*
+ * If not building with SSR mode, you can
+ * directly export the Store instantiation
+ */
+
+export default function (/* { ssrContext } */) {
+  const Store = new Vuex.Store({
+    modules: {
+      global,
+      testplan,
+      auth
+    }
+  })
+  return Store
+}

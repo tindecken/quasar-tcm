@@ -2,5 +2,5 @@
 Tips:
   QButton sử dụng label thay vì >text<
 Todo:
-  ☐ Cho màu gutter là primary or secondary gì đó, miễn sao lấy trong hệ color là được
-  ☐ Làm lại cái mớ mutation, nhìn all capslock tởm quá 
+  ✔ Cho màu gutter là primary or secondary gì đó, miễn sao lấy trong hệ color là được --> Khỏi đổi nữa @started(18-11-28 15:06) @done(18-11-28 15:06) @lasted(59s)
+  ☐ Refactor lại vuex @started(18-11-28 15:28)

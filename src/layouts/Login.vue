@@ -54,7 +54,7 @@
 					return
 				}
 				localStorage.token = token
-				this.$store.dispatch('login')
+				this.$store.dispatch('auth/login')
 				this.$router.replace(this.$route.query.redirect || '/home')
 			},
 			loginFailed () {
@@ -66,7 +66,7 @@
 			},
 		},
 		computed: {
-			...mapGetters({ currentUser: 'currentUser'})
+			...mapGetters({ currentUser: 'auth/currentUser'})
 		}
   }
 </script>

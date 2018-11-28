@@ -22,7 +22,6 @@ async function createCategory(data){
         }
         await db.put(doc)
       }else{ //id đã tồn tại trong hệ thống --> báo lỗi
-        debugger
         console.log('data.name', data.name)
         throw `Category ${data.name} is already exist`
       }

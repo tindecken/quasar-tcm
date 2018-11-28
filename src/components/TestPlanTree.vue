@@ -44,7 +44,7 @@ export default {
     return {
       ticked: [],
       tickFilter: '',
-      selected: null
+      selected: ''
     };
   },
   methods: {
@@ -66,7 +66,6 @@ export default {
       this.tlTreeViewData = result
     })
   },
-    
   computed: {
     tlTreeViewData:{
       get () {

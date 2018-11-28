@@ -6,7 +6,7 @@
 
 <script>
 import * as Database from './backend/Database'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
   updated () {
@@ -26,9 +26,8 @@ export default {
   },
   computed: {
     ...mapGetters({ 
-        currentUser: 'currentUser',
-        theme: 'theme'
-      })
+      currentUser: 'auth/currentUser',
+    })
   }
 }
 </script>
