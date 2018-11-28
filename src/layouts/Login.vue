@@ -66,7 +66,14 @@
 			},
 		},
 		computed: {
-			...mapGetters({ currentUser: 'auth/currentUser'})
+			selectedTab: {
+				get () {
+					return this.$store.state.testplan.selectedTab
+				},
+				set (val) {
+					this.$store.commit('testplan/changeTab', val)
+				}
+			}
 		}
   }
 </script>

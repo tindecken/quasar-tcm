@@ -1,6 +1,6 @@
 export default {
   openedTCs: ['1', '2', '3', '4'],
-  selectedTC: '3',
+  selectedNode: {},
   treeViewData:[],
-  selectedTab: 'testlab'
+  selectedTab: 'testplan'
 }

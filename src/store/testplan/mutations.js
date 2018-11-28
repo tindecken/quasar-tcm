@@ -11,8 +11,8 @@ export const changeOpenedTCs = (state, payload) => {
   state.openedTCs = payload
 }
 
-export const changeSelectedTC = (state, payload) => {
-  state.selectedTC = payload
+export const changeSelectedNode = (state, payload) => {
+  state.selectedNode = payload
 }
 
 export const changeTreeViewData = (state, payload) => {

@@ -20,7 +20,7 @@
     tick-strategy="leaf"
     :ticked.sync="ticked"
     :filter="tickFilter"
-    :selected.sync="selected"
+    :selected.sync="selectedNode"
     ref="tlTree"
   >
     <div slot="default-header" slot-scope="prop">
@@ -44,7 +44,7 @@ export default {
     return {
       ticked: [],
       tickFilter: '',
-      selected: ''
+      selectedNode: ''
     };
   },
   methods: {
@@ -58,7 +58,8 @@ export default {
       this.$refs.tlTree.expandAll()
     },
     getNodeByKey(key) {
-      console.log('Node', this.$refs.tlTree.getNodeByKey(key))
+      this.$store.commit('testplan/changeSelectedNode', this.$refs.tlTree.getNodeByKey(key))
+      // console.log('Node', this.$refs.tlTree.getNodeByKey(key))
     }
   },
   created () {
@@ -75,6 +76,14 @@ export default {
         this.$store.dispatch("testplan/changeTreeViewData", value);
       }
     },
+    selectedNode: {
+      get () {
+        return this.$store.state.testplan.selectedNode
+      },
+      set (val) {
+        this.$store.commit('testplan/changeSelectedNode', val)
+      }
+    }
   }      
 };
 </script>

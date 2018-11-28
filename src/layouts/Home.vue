@@ -60,7 +60,6 @@ export default {
   data () {
     return {
       leftDrawerOpen: false,
-      selectedTab: 'testplan',
     }
   },
   methods: {
@@ -74,7 +73,17 @@ export default {
   },
   created(){
     this.$root.$on("openLeftDrawer", this.openLeftDrawer);
-  }, 
+  },
+  computed: {
+    selectedTab: {
+      get () {
+        return this.$store.state.testplan.selectedTab
+      },
+      set (val) {
+        this.$store.commit('testplan/changeTab', val)
+      }
+    }
+  }      
 }
 </script>
 

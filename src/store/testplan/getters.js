@@ -3,16 +3,16 @@ export function someGetter (state) {
 }
 */
 
-export const selectedCase = (state) => {
-    return state.selectedCase
+export const selectedTab = (state) => {
+    return state.selectedTab
 }
 
 export const openedTCs = (state) => {
     return state.openedTCs
 }
 
-export const selectedTC = (state) => {
-    return state.selectedTC
+export const selectedNode = (state) => {
+    return state.selectedNode
 }
 
 export const changeTreeViewData = (state) => {

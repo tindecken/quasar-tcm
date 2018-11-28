@@ -11,8 +11,8 @@ export const changeOpenedTCs = ({commit}, payload) => {
   commit('changeOpenedTCs', payload)
 }
 
-export const changeSelectedTC = ({commit}, payload) => {
-  commit('changeSelectedTC', payload)
+export const changeSelectedNode = ({commit}, payload) => {
+  commit('changeSelectedNode', payload)
 }
 
 export const changeTreeViewData = ({commit}, payload) => {
