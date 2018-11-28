@@ -82,23 +82,22 @@ export default {
 
 <!-- Notice lang="stylus" -->
 <style lang="stylus">
-// "variables" is a Webpack alias (provided out of the box by Quasar CLI)
 @import '~variables'
 
 .q-icon {
   vertical-align: baseline;
 }
 
-.PASS {
-  color: $secondary;
+.pass {
+  color: $positive;
 }
-.FAIL {
-  color: #f56c6c;
+.fail {
+  color: $negative;
 }
-.PARTIAL {
-  color: #e6a23c;
+.partial {
+  color: $warning;
 }
-.RUNNING {
-  color: #909399;
+.running {
+  color: $info;
 }
 </style>

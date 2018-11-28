@@ -59,7 +59,8 @@ async function _create() {
       user: category.user,
       type: 'category',
       _id: category.id,
-      testsuites: category.testsuites
+      testsuites: category.testsuites,
+      status: category.status
     })
   })
 

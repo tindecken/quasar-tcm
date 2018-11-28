@@ -27,6 +27,7 @@ var categories = [
 		id: 'category_bank_account',
 		type: 'category',
 		testsuites: ['testsuite_pending', 'testsuite_approval'],
+		status: 'pass'
 	},
 	{
 		name: 'Payment',
@@ -35,6 +36,7 @@ var categories = [
 		id: 'category_payment',
 		type: 'category',
 		testsuites: ['testsuite_notification', 'testsuite_ach'],
+		status: 'fail'
 	}
 ]
 
