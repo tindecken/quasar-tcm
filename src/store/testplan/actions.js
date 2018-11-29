@@ -18,6 +18,3 @@ export const changeActiveTab = ({commit}, payload) => {
   commit('changeActiveTab', payload)
 }
 
-export const changeDebug = ({commit}, payload) => {
-  commit('changeDebug', payload)
-}

@@ -18,6 +18,3 @@ export const activeTab = (state) => {
     return state.activeTab
 }
 
-export const debug = (state) => {
-    return state.debug
-}
