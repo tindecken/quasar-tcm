@@ -67,6 +67,10 @@ export default {
           }
           this.focusTCTab(node._id)
           break
+        default:
+          this.debug = node
+          this.focusTCTab('debug')
+          break
       }
     },
     focusTCTab(tcID){
@@ -109,6 +113,14 @@ export default {
       },
       get () {
         return this.$store.state.testplan.activeTab
+      }
+    },
+    debug: {
+      set (value) {
+        this.$store.dispatch('global/changeDebug', value)
+      },
+      get () {
+        return this.$store.state.global.debug
       }
     },
   }      

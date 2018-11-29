@@ -1,21 +1,31 @@
 <template>
   <q-tabs v-model="activeTab" animated align="justify" color="transparent" text-color="primary" class="q-py-none">
+    <q-tab name="debug" slot="title" label="debug"></q-tab>
     <q-tab v-for="testcase in openedTCs" :key="testcase._id" :name="testcase._id" slot="title" :label="testcase.name">
       <q-btn flat round dense icon="close" class="float-right"/>
     </q-tab>
     <q-tab-pane v-for="testcase in openedTCs" :key="testcase._id" :name="testcase._id" keep-alive>
       <test-plan-tab :testcase="testcase"></test-plan-tab>
     </q-tab-pane>
+    <q-tab-pane name="debug" keep-alive>
+      <vue-json-pretty
+        :data="debug" 
+        >
+      </vue-json-pretty>
+    </q-tab-pane>
   </q-tabs>
 </template>
 
 <script>
 import TestPlanTab from './TestPlanTab'
+import VueJsonPretty from 'vue-json-pretty'
+
 export default {
   name: "test-plan-detail",
-  components: { TestPlanTab },
+  components: { TestPlanTab, VueJsonPretty },
   data() {
-    return {};
+    return {
+    };
   },
   methods: {
     open(link) {
@@ -39,6 +49,14 @@ export default {
       },
       get () {
         return this.$store.state.testplan.activeTab
+      }
+    },
+    debug: {
+      set (value) {
+        this.$store.dispatch('global/changeDebug', value)
+      },
+      get () {
+        return this.$store.state.global.debug
       }
     },
   }   

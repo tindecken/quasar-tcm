@@ -3,4 +3,5 @@ export default {
   openedTCs: [],
   selectedNode: {},
   treeViewData:[],
+  debug: {}
 }

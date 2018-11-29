@@ -1,3 +1,4 @@
 export default {
-  selectedTab: 'testplan'
+  selectedTab: 'testplan',
+  debug: {}
 }

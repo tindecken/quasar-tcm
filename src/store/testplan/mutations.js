@@ -18,3 +18,7 @@ export const changeTreeViewData = (state, payload) => {
 export const changeActiveTab = (state, payload) => {
   state.activeTab = payload
 }
+
+export const changeDebug = (state, payload) => {
+  state.debug = payload
+}
