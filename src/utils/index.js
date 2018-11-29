@@ -70,6 +70,14 @@ function getType(id){
     return id.split("_", 2)[0]
 }
 
+function isOpened(id, openedTCs){
+    if(_.findIndex(openedTCs, (o) => { return o._id === id}) !== -1){
+        return true
+    }else{
+        return false
+    }
+}
+
 export {
-    isArray, isObject, toCodeName, findBy_id, removeBy_id
+    isArray, isObject, toCodeName, findBy_id, removeBy_id, isOpened
 }

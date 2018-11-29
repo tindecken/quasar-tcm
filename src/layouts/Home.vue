@@ -27,7 +27,7 @@
     <q-page-container>
       <Split :gutterSize="4">
         <SplitArea :size="25">
-          <q-tabs class="shadow-1" animated align="justify" color="primary" v-model="selectedTab">
+          <q-tabs animated align="justify" color="primary" v-model="selectedTab">
             <q-tab name="testplan" slot="title" label="Test Plan" />
             <q-tab name="testlab" slot="title" color="secondary" label="Test Lab" />
             <q-tab-pane keep-alive name="testplan"><test-plan-tree></test-plan-tree></q-tab-pane>

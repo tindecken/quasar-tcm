@@ -1,11 +1,19 @@
 <template>
   <div>
-    {{testcase}}
+    <vue-json-pretty
+      :data="testcase" 
+      >
+    </vue-json-pretty>
   </div>
 </template>
 
 <script>
+import VueJsonPretty from 'vue-json-pretty'
+
 export default {
+  components: {
+    VueJsonPretty
+  },
   name: "test-plan-tab",
   props: ['testcase'],
   data() {

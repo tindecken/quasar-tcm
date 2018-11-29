@@ -24,11 +24,13 @@
     ref="tlTree"
   >
     <div slot="default-header" slot-scope="prop">
-      <q-icon name="mdi-folder-outline" v-if="prop.node.type === 'category'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
-      <q-icon name="mdi-file-document-box-outline" v-else-if="prop.node.type === 'testsuite'" size="18px" class="q-mr-sm"  v-bind:class="prop.node.status"/>
-      <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
-      <q-icon name="mdi-format-list-bulleted" v-else-if="prop.node.type === 'testcase'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
-      <span v-on:click="getNodeByKey(prop.node._id)">{{ prop.node.name }}</span>
+      <div v-on:click="selectNode(prop.node)">
+        <q-icon name="mdi-folder-outline" v-if="prop.node.type === 'category'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
+        <q-icon name="mdi-file-document-box-outline" v-else-if="prop.node.type === 'testsuite'" size="18px" class="q-mr-sm"  v-bind:class="prop.node.status"/>
+        <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
+        <q-icon name="mdi-format-list-bulleted" v-else-if="prop.node.type === 'testcase'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
+        <span>{{ prop.node.name }}</span>
+      </div>
     </div>
   </q-tree>
   </div>
@@ -36,7 +38,8 @@
 
 <script>
 import { mapGetters, mapActions, mapState  } from "vuex"
-import { getTestPlanTree, createCategory } from "../../backend/testplan";
+import { getTestPlanTree, createCategory } from "../../backend/testplan"
+import { isOpened } from "../../utils/index"
 
 export default {
   name: "test-plan-tree",
@@ -56,9 +59,18 @@ export default {
     expandAll: function () {
       this.$refs.tlTree.expandAll()
     },
-    getNodeByKey(key) {
-      this.$store.commit('testplan/changeSelectedNode', this.$refs.tlTree.getNodeByKey(key))
-      // console.log('Node', this.$refs.tlTree.getNodeByKey(key))
+    selectNode(node) {
+      switch(node.type){
+        case 'testcase':
+          if(!isOpened(node._id, this.openedTCs)){
+            this.$set(this.openedTCs, this.openedTCs.length, node)
+          }
+          this.focusTCTab(node._id)
+          break
+      }
+    },
+    focusTCTab(tcID){
+      this.activeTab = tcID
     }
   },
   created () {
@@ -82,7 +94,23 @@ export default {
       set (val) {
         this.$store.commit('testplan/changeSelectedNode', val)
       }
-    }
+    },
+    openedTCs: {
+      set (value) {
+        this.$store.dispatch('testplan/changeOpenedTCs', value)
+      },
+      get () {
+        return this.$store.state.testplan.openedTCs
+      }
+    },
+    activeTab: {
+      set (value) {
+        this.$store.dispatch('testplan/changeActiveTab', value)
+      },
+      get () {
+        return this.$store.state.testplan.activeTab
+      }
+    },
   }      
 };
 </script>
@@ -93,6 +121,10 @@ export default {
 
 .q-icon {
   vertical-align: baseline;
+}
+
+.q-tree-node-header {
+  padding: 0px
 }
 
 .pass {
