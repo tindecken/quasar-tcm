@@ -1,12 +1,13 @@
 <template>
   <div>
-    Test Plan Detail
+    {{testcase}}
   </div>
 </template>
 
 <script>
 export default {
-  name: "test-plan-detail",
+  name: "test-plan-tab",
+  props: ['testcase'],
   data() {
     return {};
   },

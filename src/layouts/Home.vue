@@ -35,7 +35,9 @@
           </q-tabs>
         </SplitArea>
         <SplitArea :size="75">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          <keep-alive>
+            <component v-bind:is="currentTabComponent"></component>
+          </keep-alive>
         </SplitArea>
       </Split>
     </q-page-container>
@@ -48,15 +50,17 @@
 <script>
 import AppFooter from '../components/AppFooter'
 import AppHeader from '../components/AppHeader'
-import TestPlanTree from '../components/TestPlanTree'
-import TestLabTree from '../components/TestLabTree'
+import TestPlanTree from '../components/TestPlan/TestPlanTree'
+import TestPlanDetail from '../components/TestPlan/TestPlanDetail'
+import TestLabTree from '../components/TestLab/TestLabTree'
+import TestLabDetail from '../components/TestLab/TestLabDetail'
 import { mapGetters } from 'vuex'
 
 import { openURL } from 'quasar'
 
 export default {
   name: 'home',
-  components: { AppFooter, AppHeader, TestPlanTree, TestLabTree },
+  components: { AppFooter, AppHeader, TestPlanTree, TestLabTree, TestPlanDetail, TestLabDetail },
   data () {
     return {
       leftDrawerOpen: false,
@@ -75,12 +79,19 @@ export default {
     this.$root.$on("openLeftDrawer", this.openLeftDrawer);
   },
   computed: {
+    currentTabComponent: function () {
+      if(this.$store.state.global.selectedTab === 'testplan'){
+        return TestPlanDetail
+      }else if(this.$store.state.global.selectedTab === 'testlab'){
+        return TestLabDetail
+      }
+    },
     selectedTab: {
       get () {
-        return this.$store.state.testplan.selectedTab
+        return this.$store.state.global.selectedTab
       },
       set (val) {
-        this.$store.commit('testplan/changeTab', val)
+        this.$store.commit('global/changeTab', val)
       }
     }
   }      

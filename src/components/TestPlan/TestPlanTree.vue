@@ -36,7 +36,7 @@
 
 <script>
 import { mapGetters, mapActions, mapState  } from "vuex"
-import { getTestPlanTree, createCategory } from "../backend/testplan";
+import { getTestPlanTree, createCategory } from "../../backend/testplan";
 
 export default {
   name: "test-plan-tree",
@@ -44,7 +44,6 @@ export default {
     return {
       ticked: [],
       tickFilter: '',
-      selectedNode: ''
     };
   },
   methods: {
