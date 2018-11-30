@@ -4,4 +4,6 @@ Tips:
 Todo:
   ✔ Cho màu gutter là primary or secondary gì đó, miễn sao lấy trong hệ color là được --> Khỏi đổi nữa @started(18-11-28 15:06) @done(18-11-28 15:06) @lasted(59s)
   ✔ Refactor lại vuex @started(18-11-28 15:28) @done(18-11-28 17:40) @lasted(2h12m29s)
-  ☐ Làm cái chính luôn, click double test case là nó tạo thêm 1 tab mới ở bên TestPlanDetail
+  ✔ Làm cái chính luôn, click double test case là nó tạo thêm 1 tab mới ở bên TestPlanDetail @started(18-11-30 10:45) @done(18-11-30 10:45) @lasted(37s)
+  ☐ Build context menu cho Test Plan @started(18-11-30 10:46)
+  ☐ Close tab

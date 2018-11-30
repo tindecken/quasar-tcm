@@ -1,8 +1,8 @@
 <template>
-  <q-tabs v-model="activeTab" animated align="justify" color="transparent" text-color="primary" class="q-py-none">
-    <q-tab name="debug" slot="title" label="debug"></q-tab>
-    <q-tab v-for="testcase in openedTCs" :key="testcase._id" :name="testcase._id" slot="title" :label="testcase.name">
-      <q-btn flat round dense icon="close" class="float-right"/>
+  <q-tabs v-model="activeTab" animated color="transparent" text-color="primary">
+    <q-tab name="debug" slot="title" label="debug"  class="row inline"></q-tab>
+    <q-tab v-for="testcase in openedTCs" :key="testcase._id" :name="testcase._id" slot="title" :label="testcase.name" class="row">
+      <q-btn flat round dense icon="close" float-right/>
     </q-tab>
     <q-tab-pane v-for="testcase in openedTCs" :key="testcase._id" :name="testcase._id" keep-alive>
       <test-plan-tab :testcase="testcase"></test-plan-tab>

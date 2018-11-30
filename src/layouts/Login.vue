@@ -12,7 +12,6 @@
 </template>
 
 <script>
-	import { Notify } from 'quasar'
   import { required, email } from 'vuelidate/lib/validators'
 	import { mapGetters } from 'vuex'
 	import { authen } from '../backend/services'
@@ -42,10 +41,10 @@
 					if(result) this.loginSuccessful(result.token)
 					else {
 						this.loginFailed()
-						this.$q.notify({message: "Login error", position: "bottom-right", color: "tertiary", icon:"mdi-alert-box"})
+						this.$q.notify({message: "Login error", position: "bottom-right", color: "negative", icon:"mdi-alert-box"})
 					}
 				}).catch((err) => {
-          console.log('err', err)
+					this.$q.notify({message: err, position: "bottom-right", color: "negative", icon:"mdi-alert-box"})
         })
 			},
 			loginSuccessful (token) {
