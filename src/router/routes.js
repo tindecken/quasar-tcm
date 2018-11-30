@@ -1,10 +1,6 @@
 
 const routes = [
   {
-    path: '/',
-    component: () => import('layouts/Login.vue'),
-  },
-  {
     path: '/home',
     component: () => import('layouts/Home.vue'),
     children: [
@@ -12,7 +8,6 @@ const routes = [
       // { path: 'testplan', component: () => import('components/TestPlan')}
       // { path: 'testlab', component: () => import('components/TestLab')}
     ]
-    
   },
   {
     path: '/login',
@@ -25,11 +20,11 @@ const routes = [
 ]
 
 // Always leave this as last one
-if (process.env.MODE !== 'ssr') {
-  routes.push({
-    path: '*',
-    component: () => import('pages/Error404.vue')
-  })
-}
+// if (process.env.MODE !== 'ssr') {
+//   routes.push({
+//     path: '*',
+//     component: () => import('pages/Error404.vue')
+//   })
+// }
 
 export default routes

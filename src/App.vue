@@ -21,6 +21,8 @@ export default {
     checkCurrentLogin(){
       if(!this.currentUser && this.$router.path !== '/'){
         this.$router.push('/login')
+      }else if(this.currentUser){
+        this.$router.push('/home')
       }
     }
   },

@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import global from './global'
 import testplan from './testplan'
 import auth from './auth'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,10 @@ export default function (/* { ssrContext } */) {
       global,
       testplan,
       auth
-    }
+    },
+    plugins: [createPersistedState({
+      key: 'persistedstate'
+    })]
   })
   return Store
 }
