@@ -22,7 +22,8 @@ export default function (/* { ssrContext } */) {
     },
     plugins: [createPersistedState({
       key: 'persistedstate'
-    })]
+    })],
+    strict: true
   })
   return Store
 }

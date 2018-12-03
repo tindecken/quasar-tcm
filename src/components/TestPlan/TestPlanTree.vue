@@ -24,7 +24,7 @@
     ref="tlTree"
   >
     <div slot="default-header" slot-scope="prop">
-      <div v-on:click="selectNode(prop.node)">
+      <div v-on:click.stop="selectNode(prop.node)">
         <q-icon name="mdi-folder-outline" v-if="prop.node.type === 'category'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
         <q-icon name="mdi-file-document-box-outline" v-else-if="prop.node.type === 'testsuite'" size="18px" class="q-mr-sm"  v-bind:class="prop.node.status"/>
         <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
