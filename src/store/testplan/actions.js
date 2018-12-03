@@ -2,8 +2,9 @@
 export function someAction (context) {
 }
 */
-export const changeOpenedTCs = ({commit}, payload) => {
-  commit('changeOpenedTCs', payload)
+export const changeOpenedTCs = ({commit, state}, newValue) => {
+  commit('changeOpenedTCs', newValue)
+  return state.openedTCs
 }
 
 export const changeSelectedNode = ({commit}, payload) => {
@@ -17,4 +18,3 @@ export const changeTreeViewData = ({commit}, payload) => {
 export const changeActiveTab = ({commit}, payload) => {
   commit('changeActiveTab', payload)
 }
-
