@@ -6,4 +6,4 @@ Todo:
   ✔ Refactor lại vuex @started(18-11-28 15:28) @done(18-11-28 17:40) @lasted(2h12m29s)
   ✔ Làm cái chính luôn, click double test case là nó tạo thêm 1 tab mới ở bên TestPlanDetail @started(18-11-30 10:45) @done(18-11-30 10:45) @lasted(37s)
   ☐ Build context menu cho Test Plan @started(18-11-30 10:46)
-  ☐ Close tab
+  ✔ Close tab @started(18-12-03 15:57) @done(18-12-03 15:57) @lasted(37s)
