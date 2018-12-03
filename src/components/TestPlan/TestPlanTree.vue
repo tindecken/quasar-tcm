@@ -63,7 +63,7 @@ export default {
       switch(node.type){
         case 'testcase':
           if(!isOpened(node._id, this.openedTCs)){
-            this.$set(this.openedTCs, this.openedTCs.length, node)
+            this.$store.dispatch('testplan/pushOpenedTCs', node)
           }
           this.focusTCTab(node._id)
           break

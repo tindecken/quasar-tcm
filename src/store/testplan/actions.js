@@ -18,3 +18,8 @@ export const changeTreeViewData = ({commit}, payload) => {
 export const changeActiveTab = ({commit}, payload) => {
   commit('changeActiveTab', payload)
 }
+
+export const pushOpenedTCs = ({commit}, payload) => {
+  commit('pushOpenedTCs', payload)
+}
+
