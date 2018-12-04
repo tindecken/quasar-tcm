@@ -68,7 +68,6 @@ async function getTestPlanTree () {
                 }
               }).then(async (res) => { // res = testgroup.docs
                 let testgroups = res.docs
-                console.log('testgroups', testgroups)
                 return await Promise.all(
                   testgroups.map(async (testgroup) => ({
                     ...testgroup,

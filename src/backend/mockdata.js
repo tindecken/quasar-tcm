@@ -27,7 +27,8 @@ var categories = [
 		id: 'category_bank_account',
 		type: 'category',
 		testsuites: ['testsuite_pending', 'testsuite_approval'],
-		status: 'pass'
+		status: 'pass',
+		work_items: [15149, 15150]
 	},
 	{
 		name: 'Payment',
@@ -36,7 +37,8 @@ var categories = [
 		id: 'category_payment',
 		type: 'category',
 		testsuites: ['testsuite_notification', 'testsuite_ach'],
-		status: 'fail'
+		status: 'fail',
+		work_items: [15151]
 	}
 ]
 
@@ -49,7 +51,8 @@ var testsuites = [
 		type: 'testsuite',
 		testgroups: ['testgroup_preconfig_pending', 'testgroup_primary_pending'],
 		testcases: ['testcase_pending_1', 'testcase_pending_2'],
-		category: 'category_payment'
+		category: 'category_payment',
+		work_items: [15152, 15153]
 	},
 	{
 		name: 'Approval',
@@ -59,7 +62,8 @@ var testsuites = [
 		type: 'testsuite',		
 		testgroups: ['testgroup_preconfig_approval', 'testgroup_primary_approval'],
 		testcases: ['testcase_approval_1', 'testcase_approval_2'],
-		category: 'category_payment'
+		category: 'category_payment',
+		work_items: [15154, 15155]
 	},
 	{
 		name: 'Notification',
@@ -69,7 +73,8 @@ var testsuites = [
 		type: 'testsuite',
 		testgroups: ['testgroup_preconfig_notification', 'testgroup_primary_notification'],
 		testcases: [],
-		category: 'category_bank_account'
+		category: 'category_bank_account',
+		work_items: [15156, 15157]
 	},
 	{
 		name: 'ACH',
@@ -79,7 +84,9 @@ var testsuites = [
 		type: 'testsuite',
 		testgroups: ['testgroup_preconfig_ach', 'testgroup_primary_ach'],
 		testcases: [],
-		category: 'category_bank_account'
+		category: 'category_bank_account',
+		work_items: [15158, 15159]
+		
 	}
 ]
 
@@ -89,56 +96,64 @@ var testgroups = [
 		description: 'testgroup Preconfig Pending',
 		id: 'testgroup_preconfig_pending',
 		testcases: ['testcase_preconfig_pending_1', 'testcase_preconfig_pending_2'],
-		testsuite: 'testsuite_pending'
+		testsuite: 'testsuite_pending',
+		work_items: [15160, 15161]
 	},
 	{
 		id: 'testgroup_primary_pending',
 		name: 'Group Primary Pending',
 		description: 'testgroup Primary Pending',
 		testcases: ['testcase_primary_pending_1', 'testcase_primary_pending_2'],
-		testsuite: 'testsuite_pending'
+		testsuite: 'testsuite_pending',
+		work_items: [15162, 15163]
 	},
 	{
 		id: 'testgroup_preconfig_approval',
 		name: 'Group Preconfig Approval',
 		description: 'testgroup Preconfig Aproval',
 		testcases: ['testcase_preconfig_approval_1', 'testcase_preconfig_approval_2'],
-		testsuite: 'testsuite_approval'
+		testsuite: 'testsuite_approval',
+		work_items: [15164, 15165]
 	},
 	{
 		id: 'testgroup_primary_approval',
 		name: 'Group Primary Approval',
 		description: 'testgroup Primary Aproval',
 		testcases: ['testcase_primary_approval_1', 'testcase_primary_approval_2'],
-		testsuite: 'testsuite_approval'
+		testsuite: 'testsuite_approval',
+		work_items: [15166, 15167]
 	},
 	{
 		id: 'testgroup_preconfig_notification',
 		name: 'Group Preconfig Notification',
 		description: 'testgroup Preconfig Notification',
 		testcases: ['testcase_preconfig_notification_1'],
-		testsuite: 'testsuite_notification'
+		testsuite: 'testsuite_notification',
+		work_items: [15168, 15169]
 	},
 	{
 		id: 'testgroup_primary_notification',
 		name: 'Group Primary Notification',
 		description: 'testgroup Primary Notification',
 		testcases: ['testcase_primary_notification_1'],
-		testsuite: 'testsuite_notification'
+		testsuite: 'testsuite_notification',
+		work_items: [15170, 15171]
 	},
 	{
 		id: 'testgroup_preconfig_ach',
 		name: 'Group Preconfig ACH',
 		description: 'testgroup Preconfig ACH',
 		testcases: ['testcase_preconfig_ach_1'],
-		testsuite: 'testsuite_ach'
+		testsuite: 'testsuite_ach',
+		work_items: [15172, 15173]
 	},
 	{
 		id: 'testgroup_primary_ach',
 		name: 'Group Primary ACH',
 		description: 'testgroup Primary ACH',
 		testcases: ['testcase_primary_ach_1'],
-		testsuite: 'testsuite_ach'
+		testsuite: 'testsuite_ach',
+		work_items: [15174, 15175]
 	}
 ]
 
@@ -149,7 +164,11 @@ var testcases = [
 		description: 'testcase Pending 1',
 		type: 'testcase',
 		keywords: [],
-		testsuite: 'testsuite_pending'
+		testsuite: 'testsuite_pending',
+		work_items: [15176],
+		enabled: true,
+		primary: true,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_pending_2',
@@ -157,7 +176,11 @@ var testcases = [
 		description: 'testcase Pending 2',
 		type: 'testcase',
 		keywords: [],
-		testsuite: 'testsuite_pending'
+		testsuite: 'testsuite_pending',
+		work_items: [15177],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_approval_1',
@@ -166,7 +189,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_primary_approval',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15178],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_approval_2',
@@ -175,7 +202,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_primary_approval',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15179],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_preconfig_pending_1',
@@ -184,7 +215,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_preconfig_pending',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15180],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_preconfig_pending_2',
@@ -193,7 +228,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_preconfig_pending',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15181],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_primary_pending_1',
@@ -202,7 +241,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_primary_pending',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15182],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_primary_pending_2',
@@ -211,7 +254,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_primary_pending',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15183],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_preconfig_approval_1',
@@ -220,7 +267,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_preconfig_approval',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15184],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_preconfig_approval_2',
@@ -229,7 +280,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_preconfig_approval',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15185],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_primary_approval_1',
@@ -238,7 +293,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_primary_approval',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15186],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_primary_approval_2',
@@ -247,7 +306,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_primary_approval',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15187],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_preconfig_notification_1',
@@ -256,7 +319,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_preconfig_notification',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15188],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_primary_notification_1',
@@ -265,7 +332,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_preconfig_notification',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15189],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_preconfig_ach_1',
@@ -274,7 +345,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_preconfig_ach',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15190],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	},
 	{
 		id: 'testcase_primary_ach_1',
@@ -283,7 +358,11 @@ var testcases = [
 		type: 'testcase',
 		keywords: [],
 		testgroup: 'testgroup_primary_ach',
-		testsuite: ''
+		testsuite: '',
+		work_items: [15191],
+		enabled: true,
+		primary: false,
+		dependencies: [],
 	}
 ]
 

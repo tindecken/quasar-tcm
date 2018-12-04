@@ -60,7 +60,8 @@ async function _create() {
       type: 'category',
       _id: category.id,
       testsuites: category.testsuites,
-      status: category.status
+      status: category.status,
+      work_items: category.work_items,
     })
   })
 
@@ -73,7 +74,8 @@ async function _create() {
       _id: testsuite.id,
       testgroups: testsuite.testgroups,
       testcases: testsuite.testcases,
-      category: testsuite.category
+      category: testsuite.category,
+      work_items: testsuite.work_items,
     })
   })
 
@@ -84,7 +86,8 @@ async function _create() {
       type: 'testgroup',
       _id: testgroup.id,
       testcases: testgroup.testcases,
-      testsuite: testgroup.testsuite
+      testsuite: testgroup.testsuite,
+      work_items: testgroup.work_items,
     })
   })
 
@@ -96,7 +99,11 @@ async function _create() {
       _id: testcase.id,
       keywords: testcase.keywords,
       testsuite: testcase.testsuite,
-      testgroup: testcase.testgroup
+      testgroup: testcase.testgroup,
+      work_items: testcase.work_items,
+      enabled: testcase.enabled,
+      primary: testcase.primary,
+      dependencies: testcase.dependencies,
     })
   })
 

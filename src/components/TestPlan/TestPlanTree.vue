@@ -29,20 +29,31 @@
         <q-icon name="mdi-file-document-box-outline" v-else-if="prop.node.type === 'testsuite'" size="18px" class="q-mr-sm"  v-bind:class="prop.node.status"/>
         <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
         <q-icon name="mdi-format-list-bulleted" v-else-if="prop.node.type === 'testcase'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
-        <span>{{ prop.node.name }}</span>
+        <span v-bind:class="{'bg-orange-3' : prop.node.primary, 'bg-green-3': prop.node.dependencies[0]}">{{ prop.node.name }}</span>
+        <category-menu v-if="prop.node.type === 'category'"></category-menu>
+        <test-suite-menu v-if="prop.node.type === 'testsuite'"></test-suite-menu>
+        <test-group-menu v-if="prop.node.type === 'testgroup'"></test-group-menu>
+        <test-case-menu v-if="prop.node.type === 'testcase'"></test-case-menu>
       </div>
     </div>
   </q-tree>
+  <new-category-modal></new-category-modal>
   </div>
 </template>
 
 <script>
+import CategoryMenu from "./ContextMenu/CategoryMenu"
+import TestCaseMenu from "./ContextMenu/TestCaseMenu"
+import TestSuiteMenu from "./ContextMenu/TestSuiteMenu"
+import TestGroupMenu  from "./ContextMenu/TestGroupMenu"
+import NewCategoryModal from "./Modal/NewCategoryModal"
 import { mapGetters, mapActions, mapState  } from "vuex"
 import { getTestPlanTree, createCategory } from "../../backend/testplan"
 import { isOpened } from "../../utils/index"
 
 export default {
   name: "test-plan-tree",
+  components: { CategoryMenu, TestGroupMenu, TestCaseMenu, TestSuiteMenu, NewCategoryModal },
   data() {
     return {
       ticked: [],
@@ -80,6 +91,7 @@ export default {
   created () {
     getTestPlanTree().then((result) => {
       this.tlTreeViewData = result
+      console.log('tlTreeViewData', this.tlTreeViewData)
     })
   },
   computed: {
@@ -151,4 +163,5 @@ export default {
 .running {
   color: $info;
 }
+
 </style>

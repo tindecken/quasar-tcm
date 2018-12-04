@@ -27,4 +27,14 @@ export const deleteOpenedTCs = ({commit}, payload) => {
   commit('deleteOpenedTCs', payload)
 }
 
+export const showNewCategoryModal = ({commit}, payload) => {
+  commit('showNewCategoryModal', payload)
+}
 
+export const hideNewCategoryModal = ({commit}, payload) => {
+  commit('hideNewCategoryModal', payload)
+}
+
+export const toogleNewCategoryModal = ({commit}) => {
+  commit('toogleNewCategoryModal')
+}

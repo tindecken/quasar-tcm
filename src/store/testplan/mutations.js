@@ -26,3 +26,15 @@ export const pushOpenedTCs = (state, payload) => {
 export const deleteOpenedTCs = (state, payload) => {
   Vue.delete(state.openedTCs, state.openedTCs.findIndex((tc)=> tc._id === payload));
 }
+
+export const showNewCategoryModal = (state, payload) => {
+  state.newCategoryModal.isVisible = true
+}
+
+export const hideNewCategoryModal = (state, payload) => {
+  state.newCategoryModal.isVisible = false
+}
+
+export const toogleNewCategoryModal = (state) => {
+  state.newCategoryModal.isVisible = !state.newCategoryModal.isVisible
+}

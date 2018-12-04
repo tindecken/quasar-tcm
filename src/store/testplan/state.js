@@ -2,5 +2,8 @@ export default {
   activeTab: '',
   openedTCs: [],
   selectedNode: {},
-  treeViewData:[]
+  treeViewData:[],
+  newCategoryModal: {
+    isVisible: false,
+  }
 }

@@ -18,3 +18,7 @@ export const activeTab = (state) => {
     return state.activeTab
 }
 
+export const newCategoryModal = (state) => {
+    return state.newCategoryModal
+}
+

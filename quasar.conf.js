@@ -53,16 +53,21 @@ module.exports = function (ctx) {
         'QItem',
         'QItemMain',
         'QItemSide',
+        'QItemTile',
+        'QItemSeparator',
         'QInput',
         'QField',
         'QTabs',
         'QTab',
         'QTabPane',
         'QRouteTab',
-        'QTree'
+        'QTree',
+        'QContextMenu',
+        'QModal'
       ],
       directives: [
-        'Ripple'
+        'Ripple',
+        'CloseOverlay'
       ],
       // Quasar plugins
       plugins: [
