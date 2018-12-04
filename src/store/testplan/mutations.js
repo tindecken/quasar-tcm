@@ -20,7 +20,9 @@ export const changeActiveTab = (state, payload) => {
 }
 
 export const pushOpenedTCs = (state, payload) => {
-  console.log('state', state)
-  console.log('payload', payload)
   Vue.set(state.openedTCs, state.openedTCs.length, payload);
+}
+
+export const deleteOpenedTCs = (state, payload) => {
+  Vue.delete(state.openedTCs, state.openedTCs.findIndex((tc)=> tc._id === payload));
 }

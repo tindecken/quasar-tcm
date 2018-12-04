@@ -37,8 +37,7 @@ export default {
       this.$electron.shell.openExternal(link);
     },
     closeTab (tabID){   
-      console.log('tabID', tabID)
-      this.$delete(this.openedTCs, this.openedTCs.findIndex((tc)=> tc._id === tabID))
+      this.$store.dispatch('testplan/deleteOpenedTCs', tabID)
       if(this.activeTab === tabID){
           this.$refs.tlTabs.previous()
       }

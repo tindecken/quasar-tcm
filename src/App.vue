@@ -30,6 +30,9 @@ export default {
     ...mapGetters({ 
       currentUser: 'auth/currentUser',
     })
+  },
+  created () {
+
   }
 }
 </script>

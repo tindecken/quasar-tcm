@@ -23,3 +23,8 @@ export const pushOpenedTCs = ({commit}, payload) => {
   commit('pushOpenedTCs', payload)
 }
 
+export const deleteOpenedTCs = ({commit}, payload) => {
+  commit('deleteOpenedTCs', payload)
+}
+
+
