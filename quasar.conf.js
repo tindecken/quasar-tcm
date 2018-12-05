@@ -63,7 +63,9 @@ module.exports = function (ctx) {
         'QRouteTab',
         'QTree',
         'QContextMenu',
-        'QModal'
+        'QModal',
+        'QModalLayout',
+        'QSearch'
       ],
       directives: [
         'Ripple',
