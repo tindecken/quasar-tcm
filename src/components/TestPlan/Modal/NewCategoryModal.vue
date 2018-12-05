@@ -80,8 +80,18 @@ export default {
       this.$store.dispatch("testplan/hideNewCategoryModal");
     },
     create (close) {
+      this.$store.dispatch('testplan/createCategory', { 
+        name: this.cat_name, 
+        description: this.cat_description, 
+        user: this.currentUser.email, 
+        type: 'category', 
+        _id: this.cat_name, 
+        testsuites: [], 
+        status: '', 
+        work_items: this.cat_workitems
+      })
       if(close) {
-        console.log('Create and Close')
+        this.cancel()
       }else{
         console.log(this.$v)
         console.log('Create')

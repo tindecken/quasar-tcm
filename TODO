@@ -5,9 +5,10 @@ Todo:
   ✔ Cho màu gutter là primary or secondary gì đó, miễn sao lấy trong hệ color là được --> Khỏi đổi nữa @started(18-11-28 15:06) @done(18-11-28 15:06) @lasted(59s)
   ✔ Refactor lại vuex @started(18-11-28 15:28) @done(18-11-28 17:40) @lasted(2h12m29s)
   ✔ Làm cái chính luôn, click double test case là nó tạo thêm 1 tab mới ở bên TestPlanDetail @started(18-11-30 10:45) @done(18-11-30 10:45) @lasted(37s)
-  ☐ Build context menu cho Test Plan @started(18-11-30 10:46)
+  ✔ Build context menu cho Test Plan @done(18-12-05 16:48)
   ✔ Close tab @started(18-12-03 15:57) @done(18-12-03 15:57) @lasted(37s)
   ✔ Vuex khi chọn 1 testcase bên tree thì văng lỗi vuex (thử tham khảo bài viết này xem sao https://stackoverflow.com/questions/49122648/vuex-is-it-possible-to-directly-change-state-even-if-not-recommended) @started(18-12-03 21:56) @done(18-12-03 21:56) @lasted(29s) 
   --> get/set chưa thể thay thế được hết, phải tạo thêm mutation mới
   ☐ Dùng thêm map action cho gọn, thay vì mỗi lần sử dụng phải this.$store.dispatch('action', payload)
-  ☐ Lỗi nhỏ: mỗi lần click vào testcase node là nó mutation 2 lần sự kiện changeActiveTab
+  ✔ Lỗi nhỏ: mỗi lần click vào testcase node là nó mutation 2 lần sự kiện changeActiveTab @started(18-12-05 16:47) @done(18-12-05 16:47) @lasted(59s) --> thôi khỏi sửa
+  ☐ Create New Category (verify, show toast các kiểu), get list of testcase id

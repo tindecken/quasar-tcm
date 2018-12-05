@@ -65,7 +65,9 @@ module.exports = function (ctx) {
         'QContextMenu',
         'QModal',
         'QModalLayout',
-        'QSearch'
+        'QSearch',
+        'QCheckbox',
+        'QBtnDropdown'
       ],
       directives: [
         'Ripple',
@@ -77,7 +79,7 @@ module.exports = function (ctx) {
         'Screen'
       ]
       // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
-      // i18n: 'de' // Quasar language
+      // i18n: 'de' // Quasar languageQ
     },
     // animations: 'all' --- includes all animations
     animations: [],

@@ -38,3 +38,7 @@ export const hideNewCategoryModal = ({commit}, payload) => {
 export const toogleNewCategoryModal = ({commit}) => {
   commit('toogleNewCategoryModal')
 }
+
+export const createCategory = ({commit}, payload) => {
+  commit('createCategory', payload)
+}

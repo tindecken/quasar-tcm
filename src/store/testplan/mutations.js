@@ -3,6 +3,7 @@ export function someMutation (state) {
 }
 */
 import Vue from 'vue'
+
 export const changeOpenedTCs = (state, payload) => {
   state.openedTCs = payload
 }
@@ -37,4 +38,8 @@ export const hideNewCategoryModal = (state, payload) => {
 
 export const toogleNewCategoryModal = (state) => {
   state.newCategoryModal.isVisible = !state.newCategoryModal.isVisible
+}
+
+export const createCategory = (state, payload) => {
+  Vue.set(state.treeViewData, state.treeViewData.length, payload)
 }

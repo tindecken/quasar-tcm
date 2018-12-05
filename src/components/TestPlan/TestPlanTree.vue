@@ -29,11 +29,11 @@
         <q-icon name="mdi-file-document-box-outline" v-else-if="prop.node.type === 'testsuite'" size="18px" class="q-mr-sm"  v-bind:class="prop.node.status"/>
         <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
         <q-icon name="mdi-format-list-bulleted" v-else-if="prop.node.type === 'testcase'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
-        <span v-bind:class="[{'bg-orange-2' : prop.node.primary}, {'bg-light-blue-1': prop.node.dependency && prop.node.dependency !== ''}]">{{ prop.node.name }}</span>
+        <span v-bind:class="[{'bg-orange-2' : prop.node.primary}, {'bg-light-blue-1': prop.node.dependency && prop.node.dependency !== ''}, {'text-light': prop.node.hasOwnProperty('enabled') && !prop.node.enabled}]">{{ prop.node.name }}</span>
         <category-menu v-if="prop.node.type === 'category'"></category-menu>
         <test-suite-menu v-if="prop.node.type === 'testsuite'"></test-suite-menu>
         <test-group-menu v-if="prop.node.type === 'testgroup'"></test-group-menu>
-        <test-case-menu v-if="prop.node.type === 'testcase'"></test-case-menu>
+        <test-case-menu v-if="prop.node.type === 'testcase'" :testcase="prop.node"></test-case-menu>
       </div>
     </div>
   </q-tree>

@@ -101,9 +101,10 @@ async function _create() {
       testsuite: testcase.testsuite,
       testgroup: testcase.testgroup,
       work_items: testcase.work_items,
-      disabled: testcase.disabled,
+      enabled: testcase.enabled,
       primary: testcase.primary,
       dependency: testcase.dependency,
+      tickable: testcase.tickable
     })
   })
 
