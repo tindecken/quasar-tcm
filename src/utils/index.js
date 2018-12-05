@@ -8,6 +8,7 @@ var isObject = function(a) {
     return (!!a) && (a.constructor === Object)
 }
 
+
 function toCodeName(type, name){
     return `${type}_${_.snakeCase(name)}`
 }

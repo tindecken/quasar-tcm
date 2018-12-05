@@ -99,12 +99,11 @@ export default {
     }
   },
   computed: {
-    newCategoryModal:{
-      get () {
-        return this.$store.state.testplan.newCategoryModal
-      }
-    },
-    ...mapGetters({ currentUser: 'auth/currentUser' })
+    ...mapGetters({ 
+      newCategoryModal: 'testplan/newCategoryModal',
+      currentUser: 'auth/currentUser',
+      tlTreeViewData: 'testplan/treeViewData'
+    })
   }
 }
 </script>
