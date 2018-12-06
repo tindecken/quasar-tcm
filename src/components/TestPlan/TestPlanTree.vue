@@ -38,6 +38,7 @@
     </div>
   </q-tree>
   <new-category-modal></new-category-modal>
+  <edit-category-modal></edit-category-modal>
   </div>
 </template>
 
@@ -47,13 +48,14 @@ import TestCaseMenu from "./ContextMenu/TestCaseMenu"
 import TestSuiteMenu from "./ContextMenu/TestSuiteMenu"
 import TestGroupMenu  from "./ContextMenu/TestGroupMenu"
 import NewCategoryModal from "./Modal/NewCategoryModal"
+import EditCategoryModal from "./Modal/EditCategoryModal"
 import { mapGetters, mapActions, mapState  } from "vuex"
 import { getTestPlanTree, createCategory } from "../../backend/testplan"
 import { isOpened } from "../../utils/index"
 
 export default {
   name: "test-plan-tree",
-  components: { CategoryMenu, TestGroupMenu, TestCaseMenu, TestSuiteMenu, NewCategoryModal },
+  components: { CategoryMenu, TestGroupMenu, TestCaseMenu, TestSuiteMenu, NewCategoryModal, EditCategoryModal },
   data() {
     return {
       ticked: [],

@@ -27,6 +27,13 @@ export const deleteOpenedTCs = ({commit}, payload) => {
   commit('deleteOpenedTCs', payload)
 }
 
+export const createCategory = ({commit}, payload) => {
+  commit('createCategory', payload)
+}
+
+//START - show/hidden dialogs
+
+//New Category Modal
 export const showNewCategoryModal = ({commit}, payload) => {
   commit('showNewCategoryModal', payload)
 }
@@ -39,6 +46,17 @@ export const toogleNewCategoryModal = ({commit}) => {
   commit('toogleNewCategoryModal')
 }
 
-export const createCategory = ({commit}, payload) => {
-  commit('createCategory', payload)
+//Edit Category Modal
+export const showEditCategoryModal = ({commit}, payload) => {
+  commit('showEditCategoryModal', payload)
 }
+
+export const hideEditCategoryModal = ({commit}, payload) => {
+  commit('hideEditCategoryModal', payload)
+}
+
+export const toogleEditCategoryModal = ({commit}) => {
+  commit('toogleEditCategoryModal')
+}
+
+//END - show/hidden dialogs

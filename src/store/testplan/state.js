@@ -5,5 +5,8 @@ export default {
   treeViewData:[],
   newCategoryModal: {
     isVisible: false,
+  },
+  editCategoryModal: {
+    isVisible: false,
   }
 }

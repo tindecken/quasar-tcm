@@ -28,6 +28,13 @@ export const deleteOpenedTCs = (state, payload) => {
   Vue.delete(state.openedTCs, state.openedTCs.findIndex((tc)=> tc._id === payload));
 }
 
+export const createCategory = (state, payload) => {
+  Vue.set(state.treeViewData, state.treeViewData.length, payload)
+}
+
+//START - show/hidden dialogs
+
+//New Category Modal
 export const showNewCategoryModal = (state, payload) => {
   state.newCategoryModal.isVisible = true
 }
@@ -40,6 +47,17 @@ export const toogleNewCategoryModal = (state) => {
   state.newCategoryModal.isVisible = !state.newCategoryModal.isVisible
 }
 
-export const createCategory = (state, payload) => {
-  Vue.set(state.treeViewData, state.treeViewData.length, payload)
+//Edit Category Modal
+export const showEditCategoryModal = (state, payload) => {
+  state.editCategoryModal.isVisible = true
 }
+
+export const hideEditCategoryModal = (state, payload) => {
+  state.editCategoryModal.isVisible = false
+}
+
+export const toogleEditCategoryModal = (state) => {
+  state.editCategoryModal.isVisible = !state.editCategoryModal.isVisible
+}
+
+//END - show/hidden dialogs

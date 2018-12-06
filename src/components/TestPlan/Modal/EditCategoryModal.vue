@@ -1,9 +1,9 @@
 <template>
-  <q-modal v-model="newCategoryModal.isVisible" @escape-key="cancel()" no-backdrop-dismiss :content-css="{minWidth: '35vw', minHeight: '30vh'}" no-refocus>
+  <q-modal v-model="editCategoryModal.isVisible" @escape-key="cancel()" no-backdrop-dismiss :content-css="{minWidth: '35vw', minHeight: '30vh'}" no-refocus>
     <q-modal-layout>
       <q-toolbar slot="header">
         <q-toolbar-title>
-          Create New Category
+          Edit Category
         </q-toolbar-title>
       </q-toolbar>
       <div class="q-pa-sm">
@@ -36,17 +36,9 @@
             <q-btn
               outline 
               color="primary"
-              label="Create"
+              label="Save"
               class="float-right q-mr-sm"
-              @click="create(close=false)"
-              :disable="$v.$invalid"
-            />
-            <q-btn
-              outline 
-              color="primary"
-              label="Create & Close"
-              class="float-right q-mr-sm"
-              @click="create(close=true)"
+              @click="edit(close=false)"
               :disable="$v.$invalid"
             />
           </div>
@@ -60,7 +52,7 @@
 import { required } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions, mapState  } from "vuex"
 export default {
-  name: "new-category-modal",
+  name: "edit-category-modal",
   data() {
     return {
       opened: true,
@@ -83,11 +75,11 @@ export default {
       this.$electron.shell.openExternal(link);
     },
     cancel () {
-      this.$store.dispatch("testplan/hideNewCategoryModal")
+      this.$store.dispatch("testplan/hideEditCategoryModal")
       this.clearForm()
     },
     create (close) {
-      this.$store.dispatch('testplan/createCategory', { 
+      this.$store.dispatch('testplan/editCategory', { 
         name: this.cat_name, 
         description: this.cat_description, 
         user: this.currentUser.email, 
@@ -108,7 +100,7 @@ export default {
   },
   computed: {
     ...mapGetters({ 
-      newCategoryModal: 'testplan/newCategoryModal',
+      editCategoryModal: 'testplan/editCategoryModal',
       currentUser: 'auth/currentUser',
       tlTreeViewData: 'testplan/treeViewData'
     })

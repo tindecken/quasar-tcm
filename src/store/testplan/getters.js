@@ -22,3 +22,7 @@ export const newCategoryModal = (state) => {
     return state.newCategoryModal
 }
 
+export const editCategoryModal = (state) => {
+    return state.editCategoryModal
+}
+

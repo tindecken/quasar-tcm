@@ -11,7 +11,7 @@
         </q-item-side>
         <q-item-main label="New Test Suite"/>
       </q-item>
-      <q-item v-close-overlay>
+      <q-item v-close-overlay @click.native="openEditCategoryModal()">
         <q-item-side icon="mdi-square-edit-outline">
         </q-item-side>
         <q-item-main label="Edit"/>
@@ -43,6 +43,9 @@ export default {
     },
     openNewCategoryModal () {
       this.$store.dispatch("testplan/showNewCategoryModal");
+    },
+    openEditCategoryModal () {
+      this.$store.dispatch("testplan/showEditCategoryModal");
     }
   },
   computed: {
