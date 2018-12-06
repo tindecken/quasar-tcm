@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import * as utils from '../../../utils/index'
 import { required } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions, mapState  } from "vuex"
 export default {
@@ -87,21 +88,24 @@ export default {
       this.clearForm()
     },
     create (close) {
-      this.$store.dispatch('testplan/createCategory', { 
-        name: this.cat_name, 
-        description: this.cat_description, 
-        user: this.currentUser.email, 
-        type: 'category', 
-        _id: this.cat_name, 
-        testsuites: [], 
-        status: '', 
-        work_items: this.cat_workitems
-      })
+      const isDuplicated = utils.findBy_id(this.tlTreeViewData, utils.toCodeName('category', this.cat_name))
+      if(typeof isDuplicated === "undefined"){
+        this.$store.dispatch('testplan/createCategory', { 
+          name: this.cat_name, 
+          description: this.cat_description, 
+          user: this.currentUser.email, 
+          type: 'category', 
+          _id: this.cat_name, 
+          testsuites: [], 
+          status: '', 
+          work_items: this.cat_workitems
+        })
+        this.$q.notify({message: `Create category success`, position: "bottom-right", color: "positive"})
+      }else{
+        this.$q.notify({message: `Create Failed: Duplicated category id ${utils.toCodeName('category', this.cat_name)}`, position: "bottom-right", color: "warning"})
+      }
       if(close) {
         this.cancel()
-      }else{
-        console.log(this.$v)
-        console.log('Create')
       }
       this.clearForm()
     }
