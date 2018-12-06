@@ -42,6 +42,7 @@ export default {
       this.$electron.shell.openExternal(link);
     },
     openNewCategoryModal () {
+      this.$root.$emit("openNewCategoryModalEvent");
       this.$store.dispatch("testplan/showNewCategoryModal");
     },
     openEditCategoryModal () {

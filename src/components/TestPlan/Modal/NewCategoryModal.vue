@@ -8,7 +8,7 @@
       </q-toolbar>
       <div class="q-pa-sm">
         <div class="row gutter-xs">
-          <div class="col-4"><q-input v-model="cat_name" float-label="Name *"/></div>
+          <div class="col-4"><q-input v-model="cat_name" float-label="Name *" ref="inputName" autofocus/></div>
           <div class="col-5"><q-input v-model="cat_workitems" float-label="Work Items" placeholder="space separator, ex: 1001 1102" /></div>
           <div class="col-3"><q-input :value="currentUser.name" float-label="Author" readonly/></div>
         </div>
@@ -73,9 +73,11 @@ export default {
   validations: {
     cat_name: { required }
   },
+  created (){
+    this.$root.$on("openNewCategoryModalEvent", this.clearForm)
+  },
   methods: {
     clearForm() {
-      this.$v.$reset()
       this.cat_name = ''
       this.cat_workitems = ''
       this.cat_description = ''
@@ -85,7 +87,6 @@ export default {
     },
     cancel () {
       this.$store.dispatch("testplan/hideNewCategoryModal")
-      this.clearForm()
     },
     create (close) {
       const isDuplicated = utils.findBy_id(this.tlTreeViewData, utils.toCodeName('category', this.cat_name))
@@ -104,10 +105,8 @@ export default {
       }else{
         this.$q.notify({message: `Create Failed: Duplicated category id ${utils.toCodeName('category', this.cat_name)}`, position: "bottom-right", color: "warning"})
       }
-      if(close) {
-        this.cancel()
-      }
-      this.clearForm()
+      this.$refs.inputName.focus()
+      close ? this.cancel() : this.clearForm()
     }
   },
   computed: {
