@@ -9,7 +9,7 @@
       <div class="q-pa-sm">
         <div class="row gutter-xs">
           <div class="col-4"><q-input v-model="cat_name" float-label="Name *" ref="inputName" autofocus/></div>
-          <div class="col-5"><q-input v-model="cat_workitems" float-label="Work Items" placeholder="space separator, ex: 1001 1102" /></div>
+          <div class="col-5"><q-input v-model="cat_workitems" float-label="Work Items" placeholder="comma separator, ex: 1001, 1102" /></div>
           <div class="col-3"><q-input :value="currentUser.name" float-label="Author" readonly/></div>
         </div>
         <div class="row">
@@ -73,9 +73,6 @@ export default {
   validations: {
     cat_name: { required }
   },
-  created (){
-    this.$root.$on("openNewCategoryModalEvent", this.clearForm)
-  },
   methods: {
     clearForm() {
       this.cat_name = ''
@@ -96,10 +93,10 @@ export default {
           description: this.cat_description, 
           user: this.currentUser.email, 
           type: 'category', 
-          _id: this.cat_name, 
+          _id: utils.toCodeName('category',this.cat_name), 
           testsuites: [], 
           status: '', 
-          work_items: this.cat_workitems
+          work_items: this.arr_work_items
         })
         this.$q.notify({message: `Create category success`, position: "bottom-right", color: "positive"})
       }else{
@@ -109,12 +106,18 @@ export default {
       close ? this.cancel() : this.clearForm()
     }
   },
+  created (){
+    this.$root.$on("openNewCategoryModalEvent", this.clearForm)
+  },
   computed: {
     ...mapGetters({ 
       newCategoryModal: 'testplan/newCategoryModal',
       currentUser: 'auth/currentUser',
       tlTreeViewData: 'testplan/treeViewData'
-    })
+    }),
+    arr_work_items () {
+      return this.cat_workitems.split(",")
+    }
   }
 }
 </script>

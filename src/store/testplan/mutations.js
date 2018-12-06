@@ -3,6 +3,7 @@ export function someMutation (state) {
 }
 */
 import Vue from 'vue'
+import * as utils from '../../utils/index'
 
 export const changeOpenedTCs = (state, payload) => {
   state.openedTCs = payload

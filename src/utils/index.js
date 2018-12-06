@@ -79,6 +79,31 @@ function isOpened(id, openedTCs){
     }
 }
 
+function editCategory(tlTreeData, cat_id, newCategory){
+    console.log('obj', tlTreeData)
+    console.log('cat_id', cat_id)
+    console.log('newCategory', newCategory)
+    
+    const objIndex = tlTreeData.findIndex(obj => obj._id === cat_id)
+
+    const updatedObj = { 
+        ...tlTreeData[objIndex], 
+        name: newCategory.name,
+        description: newCategory.description,
+        work_items: newCategory.work_items,
+        _id: toCodeName('category', newCategory.name),
+        user: newCategory.user
+    };
+
+    const updatedtTLTreeData = [
+        ...tlTreeData.slice(0, objIndex),
+        updatedObj,
+        ...tlTreeData.slice(objIndex + 1),
+      ]
+
+    return updatedtTLTreeData
+}
+
 export {
-    isArray, isObject, toCodeName, findBy_id, removeBy_id, isOpened
+    isArray, isObject, toCodeName, findBy_id, removeBy_id, isOpened, editCategory
 }

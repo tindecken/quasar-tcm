@@ -33,9 +33,12 @@
 <script>
 import { mapGetters, mapActions, mapState  } from "vuex"
 export default {
+  props: ['category'],
   name: "category-menu",
   data() {
-    return {};
+    return {
+      cat: this.category
+    };
   },
   methods: {
     open(link) {
@@ -46,6 +49,7 @@ export default {
       this.$store.dispatch("testplan/showNewCategoryModal");
     },
     openEditCategoryModal () {
+      this.$root.$emit("openEditCategoryModalEvent", this.cat)
       this.$store.dispatch("testplan/showEditCategoryModal");
     }
   },

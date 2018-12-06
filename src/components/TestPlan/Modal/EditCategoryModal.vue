@@ -9,7 +9,7 @@
       <div class="q-pa-sm">
         <div class="row gutter-xs">
           <div class="col-4"><q-input v-model="cat_name" float-label="Name *"/></div>
-          <div class="col-5"><q-input v-model="cat_workitems" float-label="Work Items" placeholder="space separator, ex: 1001 1102" /></div>
+          <div class="col-5"><q-input v-model="cat_workitems" float-label="Work Items" placeholder="comma separator, ex: 1001, 1102" /></div>
           <div class="col-3"><q-input :value="currentUser.name" float-label="Author" readonly/></div>
         </div>
         <div class="row">
@@ -38,7 +38,7 @@
               color="primary"
               label="Save"
               class="float-right q-mr-sm"
-              @click="edit(close=false)"
+              @click="editCategory()"
               :disable="$v.$invalid"
             />
           </div>
@@ -51,6 +51,8 @@
 <script>
 import { required } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions, mapState  } from "vuex"
+import * as utils from '../../../utils/index'
+
 export default {
   name: "edit-category-modal",
   data() {
@@ -59,44 +61,40 @@ export default {
       cat_name: '',
       cat_workitems: '',
       cat_description: '',
+      cat_id: '',
     };
   },
   validations: {
     cat_name: { required }
   },
   methods: {
-    clearForm() {
-      this.$v.$reset()
-      this.cat_name = ''
-      this.cat_workitems = ''
-      this.cat_description = ''
-    },
+    ...mapActions({
+      changeTreeViewData: 'testplan/changeTreeViewData'
+    }),
     open(link) {
       this.$electron.shell.openExternal(link);
     },
     cancel () {
       this.$store.dispatch("testplan/hideEditCategoryModal")
-      this.clearForm()
     },
-    create (close) {
-      this.$store.dispatch('testplan/editCategory', { 
+    editCategory () {
+      let newCategory = {
         name: this.cat_name, 
         description: this.cat_description, 
-        user: this.currentUser.email, 
-        type: 'category', 
-        _id: this.cat_name, 
-        testsuites: [], 
-        status: '', 
+        user: this.currentUser.email,
         work_items: this.cat_workitems
-      })
-      if(close) {
-        this.cancel()
-      }else{
-        console.log(this.$v)
-        console.log('Create')
       }
-      this.clearForm()
+      const updatedTLTreeData = utils.editCategory(this.tlTreeViewData, this.cat_id, newCategory)
+      this.changeTreeViewData(updatedTLTreeData)
     }
+  },
+  created (){
+    this.$root.$on("openEditCategoryModalEvent", (category) => { 
+      this.cat_name = category.name
+      this.cat_workitems = category.work_items
+      this.cat_description = category.description
+      this.cat_id = category._id
+    })
   },
   computed: {
     ...mapGetters({ 
