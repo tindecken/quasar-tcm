@@ -69,7 +69,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      changeTreeViewData: 'testplan/changeTreeViewData'
+      changeTreeViewData: 'testplan/changeTreeViewData',
+      changeSelectedNode: 'testplan/changeSelectedNode'
     }),
     open(link) {
       this.$electron.shell.openExternal(link);
@@ -86,6 +87,8 @@ export default {
       }
       const updatedTLTreeData = utils.editCategory(this.tlTreeViewData, this.cat_id, newCategory)
       this.changeTreeViewData(updatedTLTreeData)
+      this.cancel()
+      this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
     }
   },
   created (){

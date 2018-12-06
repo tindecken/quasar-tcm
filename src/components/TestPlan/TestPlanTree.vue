@@ -85,6 +85,7 @@ export default {
           this.focusTCTab('debug')
           break
       }
+      this.selectedNode = node._id
     },
     focusTCTab(tcID){
       this.activeTab = tcID
@@ -110,7 +111,7 @@ export default {
         return this.$store.state.testplan.selectedNode
       },
       set (val) {
-        this.$store.commit('testplan/changeSelectedNode', val)
+        this.$store.dispatch('testplan/changeSelectedNode', val)
       }
     },
     openedTCs: {

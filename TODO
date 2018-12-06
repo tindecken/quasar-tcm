@@ -9,6 +9,7 @@ Todo:
   ✔ Close tab @started(18-12-03 15:57) @done(18-12-03 15:57) @lasted(37s)
   ✔ Vuex khi chọn 1 testcase bên tree thì văng lỗi vuex (thử tham khảo bài viết này xem sao https://stackoverflow.com/questions/49122648/vuex-is-it-possible-to-directly-change-state-even-if-not-recommended) @started(18-12-03 21:56) @done(18-12-03 21:56) @lasted(29s) 
   --> get/set chưa thể thay thế được hết, phải tạo thêm mutation mới
-  ☐ Dùng thêm map action cho gọn, thay vì mỗi lần sử dụng phải this.$store.dispatch('action', payload)
+  ✔ Dùng thêm map action cho gọn, thay vì mỗi lần sử dụng phải this.$store.dispatch('action', payload) @started(18-12-06 22:14) @done(18-12-06 22:14) @lasted(40s)
   ✔ Lỗi nhỏ: mỗi lần click vào testcase node là nó mutation 2 lần sự kiện changeActiveTab @started(18-12-05 16:47) @done(18-12-05 16:47) @lasted(59s) --> thôi khỏi sửa
-  ☐ Create New Category (verify, show toast các kiểu), get list of testcase id
+  ✔ Create New Category (verify, show toast các kiểu), get list of testcase id @started(18-12-06 22:14) @done(18-12-06 22:14) @lasted(35s)
+  ☐ Sau khi Edit Category, có thay đổi Name thì save xong là bị thu nhỏ + các click bị lỗi.
