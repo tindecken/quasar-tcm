@@ -62,4 +62,13 @@ export const toogleEditCategoryModal = (state) => {
   state.editCategoryModal.isVisible = !state.editCategoryModal.isVisible
 }
 
+//Delete Category Modal
+export const showDeleteCategoryModal = (state, payload) => {
+  state.deleteCategoryModal.isVisible = true
+}
+
+export const hideDeleteCategoryModal = (state, payload) => {
+  state.deleteCategoryModal.isVisible = false
+}
+
 //END - show/hidden dialogs

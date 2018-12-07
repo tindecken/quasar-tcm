@@ -104,6 +104,13 @@ function editCategory(tlTreeData, cat_id, newCategory){
     return updatedtTLTreeData
 }
 
+function deleteCategory(tlTreeData, cat_id){
+    console.log('tlTreeData', tlTreeData)
+    console.log('cat_id', cat_id)
+    let updatedtTLTreeData = _.remove(tlTreeData, (cat) => cat._id !== cat_id)
+    return updatedtTLTreeData
+}
+
 export {
-    isArray, isObject, toCodeName, findBy_id, removeBy_id, isOpened, editCategory
+    isArray, isObject, toCodeName, findBy_id, removeBy_id, isOpened, editCategory, deleteCategory
 }

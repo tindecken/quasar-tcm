@@ -31,9 +31,6 @@ export const createCategory = ({commit}, payload) => {
   commit('createCategory', payload)
 }
 
-export const changeExpandedNodes = ({commit}, payload) => {
-  commit('changeExpandedNodes', payload)
-}
 
 //START - show/hidden dialogs
 
@@ -61,6 +58,15 @@ export const hideEditCategoryModal = ({commit}, payload) => {
 
 export const toogleEditCategoryModal = ({commit}) => {
   commit('toogleEditCategoryModal')
+}
+
+//Delete Category Modal
+export const showDeleteCategoryModal = ({commit}, payload) => {
+  commit('showDeleteCategoryModal', payload)
+}
+
+export const hideDeleteCategoryModal = ({commit}, payload) => {
+  commit('hideDeleteCategoryModal', payload)
 }
 
 //END - show/hidden dialogs

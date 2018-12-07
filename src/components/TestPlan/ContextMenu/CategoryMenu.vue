@@ -16,7 +16,7 @@
         </q-item-side>
         <q-item-main label="Edit"/>
       </q-item>
-      <q-item v-close-overlay>
+      <q-item v-close-overlay @click.native="openDeleteCategoryModal()">
         <q-item-side icon="mdi-trash-can-outline">
         </q-item-side>
         <q-item-main label="Delete"/>
@@ -51,17 +51,13 @@ export default {
     openEditCategoryModal () {
       this.$root.$emit("openEditCategoryModalEvent", this.cat)
       this.$store.dispatch("testplan/showEditCategoryModal");
+    },
+    openDeleteCategoryModal () {
+      this.$root.$emit("openDeleteCategoryModalEvent", this.cat)
+      this.$store.dispatch("testplan/showDeleteCategoryModal");
     }
   },
   computed: {
-    newCategoryModal:{
-      get () {
-        return this.$store.state.testplan.newCategoryModal
-      },
-      set(value) {
-        this.$store.dispatch("testplan/toogleNewCategoryModal", value);
-      }
-    }
   }
 }
 </script>

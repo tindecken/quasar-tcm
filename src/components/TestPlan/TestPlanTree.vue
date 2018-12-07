@@ -24,6 +24,7 @@
     ref="tlTree"
     :duration=10
     :expanded.sync="expandedNode"
+    no-nodes-label="No Category"
   >
     <div slot="default-header" slot-scope="prop">
       <div v-on:click.stop="selectNode(prop.node)">
@@ -41,6 +42,7 @@
   </q-tree>
   <new-category-modal></new-category-modal>
   <edit-category-modal></edit-category-modal>
+  <delete-category-modal></delete-category-modal>
   </div>
 </template>
 
@@ -51,13 +53,14 @@ import TestSuiteMenu from "./ContextMenu/TestSuiteMenu"
 import TestGroupMenu  from "./ContextMenu/TestGroupMenu"
 import NewCategoryModal from "./Modal/NewCategoryModal"
 import EditCategoryModal from "./Modal/EditCategoryModal"
+import DeleteCategoryModal from "./Modal/DeleteCategoryModal"
 import { mapGetters, mapActions, mapState  } from "vuex"
 import { getTestPlanTree, createCategory } from "../../backend/testplan"
 import { isOpened } from "../../utils/index"
 
 export default {
   name: "test-plan-tree",
-  components: { CategoryMenu, TestGroupMenu, TestCaseMenu, TestSuiteMenu, NewCategoryModal, EditCategoryModal },
+  components: { CategoryMenu, TestGroupMenu, TestCaseMenu, TestSuiteMenu, NewCategoryModal, EditCategoryModal, DeleteCategoryModal },
   data() {
     return {
       ticked: [],

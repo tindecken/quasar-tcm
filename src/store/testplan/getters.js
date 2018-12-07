@@ -26,7 +26,9 @@ export const editCategoryModal = (state) => {
     return state.editCategoryModal
 }
 
-export const expandedNodes = (state) => {
-    return state.expandedNodes
+export const deleteCategoryModal = (state) => {
+    return state.deleteCategoryModal
 }
+
+
 
