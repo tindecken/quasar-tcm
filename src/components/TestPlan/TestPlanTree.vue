@@ -43,6 +43,7 @@
   <new-category-modal></new-category-modal>
   <edit-category-modal></edit-category-modal>
   <delete-category-modal></delete-category-modal>
+  <new-test-suite-modal></new-test-suite-modal>
   </div>
 </template>
 
@@ -54,13 +55,14 @@ import TestGroupMenu  from "./ContextMenu/TestGroupMenu"
 import NewCategoryModal from "./Modal/NewCategoryModal"
 import EditCategoryModal from "./Modal/EditCategoryModal"
 import DeleteCategoryModal from "./Modal/DeleteCategoryModal"
+import NewTestSuiteModal from "./Modal/NewTestSuiteModal"
 import { mapGetters, mapActions, mapState  } from "vuex"
 import { getTestPlanTree, createCategory } from "../../backend/testplan"
 import { isOpened } from "../../utils/index"
 
 export default {
   name: "test-plan-tree",
-  components: { CategoryMenu, TestGroupMenu, TestCaseMenu, TestSuiteMenu, NewCategoryModal, EditCategoryModal, DeleteCategoryModal },
+  components: { CategoryMenu, TestGroupMenu, TestCaseMenu, TestSuiteMenu, NewCategoryModal, EditCategoryModal, DeleteCategoryModal, NewTestSuiteModal },
   data() {
     return {
       ticked: [],

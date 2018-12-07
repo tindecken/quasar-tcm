@@ -6,6 +6,9 @@ export default {
   newCategoryModal: {
     isVisible: false,
   },
+  newTestSuiteModal: {
+    isVisible: false,
+  },
   deleteCategoryModal: {
     isVisible: false,
   },

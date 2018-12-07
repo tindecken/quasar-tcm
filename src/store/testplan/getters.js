@@ -30,5 +30,9 @@ export const deleteCategoryModal = (state) => {
     return state.deleteCategoryModal
 }
 
+export const newTestSuiteModal = (state) => {
+    return state.newTestSuiteModal
+}
+
 
 

@@ -45,10 +45,6 @@ export const hideNewCategoryModal = (state, payload) => {
   state.newCategoryModal.isVisible = false
 }
 
-export const toogleNewCategoryModal = (state) => {
-  state.newCategoryModal.isVisible = !state.newCategoryModal.isVisible
-}
-
 //Edit Category Modal
 export const showEditCategoryModal = (state, payload) => {
   state.editCategoryModal.isVisible = true
@@ -58,10 +54,6 @@ export const hideEditCategoryModal = (state, payload) => {
   state.editCategoryModal.isVisible = false
 }
 
-export const toogleEditCategoryModal = (state) => {
-  state.editCategoryModal.isVisible = !state.editCategoryModal.isVisible
-}
-
 //Delete Category Modal
 export const showDeleteCategoryModal = (state, payload) => {
   state.deleteCategoryModal.isVisible = true
@@ -69,6 +61,15 @@ export const showDeleteCategoryModal = (state, payload) => {
 
 export const hideDeleteCategoryModal = (state, payload) => {
   state.deleteCategoryModal.isVisible = false
+}
+
+//New Test Suite Modal
+export const showNewTestSuiteModal = (state, payload) => {
+  state.newTestSuiteModal.isVisible = true
+}
+
+export const hideNewTestSuiteModal = (state, payload) => {
+  state.newTestSuiteModal.isVisible = false
 }
 
 //END - show/hidden dialogs

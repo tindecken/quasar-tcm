@@ -6,7 +6,7 @@
         </q-item-side>
         <q-item-main label="New Category"/>
       </q-item>
-      <q-item v-close-overlay>
+      <q-item v-close-overlay  @click.native="openNewTestSuiteModal()">
         <q-item-side icon="mdi-plus">
         </q-item-side>
         <q-item-main label="New Test Suite"/>
@@ -55,6 +55,10 @@ export default {
     openDeleteCategoryModal () {
       this.$root.$emit("openDeleteCategoryModalEvent", this.cat)
       this.$store.dispatch("testplan/showDeleteCategoryModal");
+    },
+    openNewTestSuiteModal () {
+      this.$root.$emit("openNewTestSuiteModalEvent", this.cat)
+      this.$store.dispatch("testplan/showNewTestSuiteModal");
     }
   },
   computed: {

@@ -69,4 +69,13 @@ export const hideDeleteCategoryModal = ({commit}, payload) => {
   commit('hideDeleteCategoryModal', payload)
 }
 
+//New Test Suite Category Modal
+export const showNewTestSuiteModal = ({commit}, payload) => {
+  commit('showNewTestSuiteModal', payload)
+}
+
+export const hideNewTestSuiteModal = ({commit}, payload) => {
+  commit('hideNewTestSuiteModal', payload)
+}
+
 //END - show/hidden dialogs
