@@ -29,6 +29,7 @@ export const deleteOpenedTCs = (state, payload) => {
   Vue.delete(state.openedTCs, state.openedTCs.findIndex((tc)=> tc._id === payload));
 }
 
+
 export const createCategory = (state, payload) => {
   Vue.set(state.treeViewData, state.treeViewData.length, payload)
 }

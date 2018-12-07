@@ -31,6 +31,10 @@ export const createCategory = ({commit}, payload) => {
   commit('createCategory', payload)
 }
 
+export const changeExpandedNodes = ({commit}, payload) => {
+  commit('changeExpandedNodes', payload)
+}
+
 //START - show/hidden dialogs
 
 //New Category Modal

@@ -74,6 +74,9 @@ export default {
     cat_name: { required }
   },
   methods: {
+    ...mapActions({
+      changeSelectedNode: 'testplan/changeSelectedNode'
+    }),
     clearForm() {
       this.cat_name = ''
       this.cat_workitems = ''
@@ -102,8 +105,13 @@ export default {
       }else{
         this.$q.notify({message: `Create Failed: Duplicated category id ${utils.toCodeName('category', this.cat_name)}`, position: "bottom-right", color: "warning"})
       }
-      this.$refs.inputName.focus()
-      close ? this.cancel() : this.clearForm()
+      if(close) {
+        this.cancel()
+        this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
+      }else{
+        this.clearForm()
+        this.$refs.inputName.focus()
+      }
     }
   },
   created (){

@@ -58,6 +58,7 @@ export default {
   data() {
     return {
       opened: true,
+      old_cat_name: '',
       cat_name: '',
       cat_workitems: '',
       cat_description: '',
@@ -85,14 +86,33 @@ export default {
         user: this.currentUser.email,
         work_items: this.cat_workitems
       }
-      const updatedTLTreeData = utils.editCategory(this.tlTreeViewData, this.cat_id, newCategory)
-      this.changeTreeViewData(updatedTLTreeData)
-      this.cancel()
-      this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
+      let checkDuplicate = true
+      if(this.old_cat_name === this.cat_name){ //no need check duplicate id
+        checkDuplicate = false
+      }
+      if(checkDuplicate){
+        const isDuplicated = utils.findBy_id(this.tlTreeViewData, utils.toCodeName('category', this.cat_name))
+        if(typeof isDuplicated === "undefined"){
+          const updatedTLTreeData = utils.editCategory(this.tlTreeViewData, this.cat_id, newCategory)
+          this.changeTreeViewData(updatedTLTreeData)
+          this.cancel()
+          this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
+          this.$q.notify({message: `Update category success`, position: "bottom-right", color: "positive"})
+        }else {
+          this.$q.notify({message: `Update Failed: Duplicated category id ${utils.toCodeName('category', this.cat_name)}`, position: "bottom-right", color: "warning"})
+        }
+      }else{
+        const updatedTLTreeData = utils.editCategory(this.tlTreeViewData, this.cat_id, newCategory)
+        this.changeTreeViewData(updatedTLTreeData)
+        this.cancel()
+        this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
+        this.$q.notify({message: `Update category success`, position: "bottom-right", color: "positive"})
+      }
     }
   },
   created (){
     this.$root.$on("openEditCategoryModalEvent", (category) => { 
+      this.old_cat_name = category.name
       this.cat_name = category.name
       this.cat_workitems = category.work_items
       this.cat_description = category.description

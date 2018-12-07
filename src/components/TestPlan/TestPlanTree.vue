@@ -22,6 +22,8 @@
     :filter="tickFilter"
     :selected.sync="selectedNode"
     ref="tlTree"
+    :duration=10
+    :expanded.sync="expandedNode"
   >
     <div slot="default-header" slot-scope="prop">
       <div v-on:click.stop="selectNode(prop.node)">
@@ -60,6 +62,7 @@ export default {
     return {
       ticked: [],
       tickFilter: '',
+      expandedNode: []
     };
   },
   methods: {

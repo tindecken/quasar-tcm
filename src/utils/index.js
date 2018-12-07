@@ -93,13 +93,13 @@ function editCategory(tlTreeData, cat_id, newCategory){
         work_items: newCategory.work_items,
         _id: toCodeName('category', newCategory.name),
         user: newCategory.user
-    };
+    }
 
     const updatedtTLTreeData = [
         ...tlTreeData.slice(0, objIndex),
         updatedObj,
         ...tlTreeData.slice(objIndex + 1),
-      ]
+    ]
 
     return updatedtTLTreeData
 }
