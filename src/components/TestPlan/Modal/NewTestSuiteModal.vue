@@ -25,16 +25,19 @@
           </div>
         </div>
         <div class="row justify-end">
-          <div class="col-7">
+          <div class="col-5 self-center">
+            <q-checkbox v-model="addFirst" color="primary" label="Add First" />
+          </div>
+          <div class="col-7 self-center">
             <q-btn
-              outline 
+              outline
               color="primary"
               label="Cancel"
               class="float-right"
               @click="cancel()"
             />
             <q-btn
-              outline 
+              outline
               color="primary"
               label="Create"
               class="float-right q-mr-sm"
@@ -42,7 +45,7 @@
               :disable="$v.$invalid"
             />
             <q-btn
-              outline 
+              outline
               color="primary"
               label="Create & Close"
               class="float-right q-mr-sm"
@@ -69,7 +72,8 @@ export default {
       suite_name: '',
       suite_workitems: '',
       suite_description: '',
-      bLastPos: true
+      bLastPos: true,
+      addFirst: false
     };
   },
   validations: {
@@ -77,7 +81,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      changeSelectedNode: 'testplan/changeSelectedNode'
+      changeSelectedNode: 'testplan/changeSelectedNode',
+      changeTreeViewData: 'testplan/changeTreeViewData',
     }),
     clearForm() {
       this.suite_name = ''
@@ -92,20 +97,23 @@ export default {
     },
     create (close) {
       let testsuite = {
-        name: this.suite_name, 
-          description: this.suite_description, 
-          user: this.currentUser.email, 
-          type: 'testsuite', 
-          _id: utils.toCodeName('testsuite',this.suite_name), 
-          testgroups: [], 
+        name: this.suite_name,
+          description: this.suite_description,
+          user: this.currentUser.email,
+          type: 'testsuite',
+          _id: utils.toCodeName('testsuite',this.suite_name),
+          testgroups: [],
           testcases: [],
-          category: this.selectedCategory._id, 
-          status: '', 
+          category: this.selectedCategory._id,
+          status: '',
           work_items: this.arr_work_items
       }
-      debugger
       const isDuplicated = utils.findBy_id(this.tlTreeViewData, utils.toCodeName('testsuite', this.suite_name))
       if(typeof isDuplicated === "undefined"){
+        const updatedTLTreeData = utils.createTestSuite(this.tlTreeViewData, this.selectedCategory._id, testsuite, this.addFirst)
+        this.changeTreeViewData(updatedTLTreeData)
+        this.cancel()
+        this.changeSelectedNode(utils.toCodeName('testsuite', this.suite_name))
         this.$q.notify({message: `Create Test Suite success`, position: "bottom-right", color: "positive"})
       }else{
         this.$q.notify({message: `Create Failed: Duplicated Test Suite id ${utils.toCodeName('testsuite', this.suite_name)}`, position: "bottom-right", color: "warning"})
@@ -121,13 +129,13 @@ export default {
   },
   created (){
     this.$root.$on("openNewTestSuiteModalEvent", (category) => {
-      this.clearForm() 
+      this.clearForm()
       this.selectedCategory = category
       console.log('this.selectedCategory', this.selectedCategory)
     })
   },
   computed: {
-    ...mapGetters({ 
+    ...mapGetters({
       newTestSuiteModal: 'testplan/newTestSuiteModal',
       currentUser: 'auth/currentUser',
       tlTreeViewData: 'testplan/treeViewData'
