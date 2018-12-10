@@ -49,7 +49,8 @@ export default {
       this.$store.dispatch("testplan/showNewCategoryModal");
     },
     openEditCategoryModal () {
-      this.$root.$emit("openEditCategoryModalEvent", this.cat)
+      this.changeSelectedNode(this.cat)
+      this.$root.$emit("openEditCategoryModalEvent", this.selectedNode)
       this.$store.dispatch("testplan/showEditCategoryModal");
     },
     openDeleteCategoryModal () {
@@ -59,9 +60,15 @@ export default {
     openNewTestSuiteModal () {
       this.$root.$emit("openNewTestSuiteModalEvent", this.cat)
       this.$store.dispatch("testplan/showNewTestSuiteModal");
-    }
+    },
+    ...mapActions({
+      changeSelectedNode: 'testplan/changeSelectedNode'
+    })
   },
   computed: {
+    ...mapGetters({ 
+      selectedNode: 'testplan/selectedNode' 
+    }),
   }
 }
 </script>

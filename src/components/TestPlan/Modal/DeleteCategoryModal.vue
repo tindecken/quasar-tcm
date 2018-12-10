@@ -49,7 +49,7 @@ export default {
   methods: {
     ...mapActions({
       changeTreeViewData: 'testplan/changeTreeViewData',
-      changeSelectedNode: 'testplan/changeSelectedNode'
+      changeSelectedNodeID: 'testplan/changeSelectedNodeID'
     }),
     open(link) {
       this.$electron.shell.openExternal(link);

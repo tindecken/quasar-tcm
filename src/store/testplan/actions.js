@@ -11,6 +11,10 @@ export const changeSelectedNode = ({commit}, payload) => {
   commit('changeSelectedNode', payload)
 }
 
+export const changeSelectedNodeID = ({commit}, payload) => {
+  commit('changeSelectedNodeID', payload)
+}
+
 export const changeTreeViewData = ({commit}, payload) => {
   commit('changeTreeViewData', payload)
 }

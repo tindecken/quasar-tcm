@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      changeSelectedNode: 'testplan/changeSelectedNode',
+      changeSelectedNodeID: 'testplan/changeSelectedNodeID',
       createTestSuite: 'testplan/createTestSuite',
     }),
     clearForm() {
@@ -115,14 +115,14 @@ export default {
           testsuite: testsuite,
           addFirst: this.addFirst
         })
-        this.changeSelectedNode(utils.toCodeName('testsuite', this.suite_name))
+        this.changeSelectedNodeID(utils.toCodeName('testsuite', this.suite_name))
         this.$q.notify({message: `Create Test Suite success`, position: "bottom-right", color: "positive"})
       }else{
         this.$q.notify({message: `Create Failed: Duplicated Test Suite id ${utils.toCodeName('testsuite', this.suite_name)}`, position: "bottom-right", color: "warning"})
       }
       if(close) {
         this.cancel()
-        this.changeSelectedNode(utils.toCodeName('testsuite', this.suite_name))
+        this.changeSelectedNodeID(utils.toCodeName('testsuite', this.suite_name))
       }else{
         this.clearForm()
         this.$refs.inputName.focus()

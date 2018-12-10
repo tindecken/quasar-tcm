@@ -73,12 +73,12 @@ export default {
         return this.$store.state.global.debug
       }
     },
-    selectedNode: {
+    selectedNodeID: {
       set (value) {
-        this.$store.dispatch('testplan/changeSelectedNode', value)
+        this.$store.dispatch('testplan/changeSelectedNodeID', value)
       },
       get () {
-        return this.$store.state.testplan.selectedNode
+        return this.$store.state.testplan.selectedNodeID
       }
     }
   }   

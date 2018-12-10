@@ -71,7 +71,7 @@ export default {
   methods: {
     ...mapActions({
       changeTreeViewData: 'testplan/changeTreeViewData',
-      changeSelectedNode: 'testplan/changeSelectedNode'
+      changeSelectedNodeID: 'testplan/changeSelectedNodeID'
     }),
     open(link) {
       this.$electron.shell.openExternal(link);
@@ -96,7 +96,7 @@ export default {
           const updatedTLTreeData = utils.editCategory(this.tlTreeViewData, this.cat_id, newCategory)
           this.changeTreeViewData(updatedTLTreeData)
           this.cancel()
-          this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
+          this.changeSelectedNodeID(utils.toCodeName('category', this.cat_name))
           this.$q.notify({message: `Update category success`, position: "bottom-right", color: "positive"})
         }else {
           this.$q.notify({message: `Update Failed: Duplicated category id ${utils.toCodeName('category', this.cat_name)}`, position: "bottom-right", color: "warning"})
@@ -105,25 +105,25 @@ export default {
         const updatedTLTreeData = utils.editCategory(this.tlTreeViewData, this.cat_id, newCategory)
         this.changeTreeViewData(updatedTLTreeData)
         this.cancel()
-        this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
+        this.changeSelectedNodeID(utils.toCodeName('category', this.cat_name))
         this.$q.notify({message: `Update category success`, position: "bottom-right", color: "positive"})
       }
     }
   },
   created (){
-    this.$root.$on("openEditCategoryModalEvent", (category) => { 
-      this.old_cat_name = category.name
-      this.cat_name = category.name
-      this.cat_workitems = category.work_items
-      this.cat_description = category.description
-      this.cat_id = category._id
+    this.$root.$on("openEditCategoryModalEvent", (selectedNode) => { 
+      this.old_cat_name = selectedNode.name
+      this.cat_name = selectedNode.name
+      this.cat_workitems = selectedNode.work_items
+      this.cat_description = selectedNode.description
+      this.cat_id = selectedNode._id
     })
   },
   computed: {
     ...mapGetters({ 
       editCategoryModal: 'testplan/editCategoryModal',
       currentUser: 'auth/currentUser',
-      tlTreeViewData: 'testplan/treeViewData'
+      tlTreeViewData: 'testplan/treeViewData',
     })
   }
 }

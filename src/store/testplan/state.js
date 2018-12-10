@@ -1,7 +1,8 @@
 export default {
+  selectedNode: {},
   activeTab: '',
   openedTCs: [],
-  selectedNode: {},
+  selectedNodeID: '',
   treeViewData:[],
   newCategoryModal: {
     isVisible: false,

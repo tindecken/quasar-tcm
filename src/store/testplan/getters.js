@@ -10,6 +10,10 @@ export const selectedNode = (state) => {
     return state.selectedNode
 }
 
+export const selectedNodeID = (state) => {
+    return state.selectedNodeID
+}
+
 export const treeViewData = (state) => {
     return state.treeViewData
 }

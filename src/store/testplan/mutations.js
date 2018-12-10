@@ -9,6 +9,10 @@ export const changeOpenedTCs = (state, payload) => {
   state.openedTCs = payload
 }
 
+export const changeSelectedNodeID = (state, payload) => {
+  state.selectedNodeID = payload
+}
+
 export const changeSelectedNode = (state, payload) => {
   state.selectedNode = payload
 }

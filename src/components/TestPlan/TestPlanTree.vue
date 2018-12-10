@@ -20,7 +20,7 @@
     tick-strategy="leaf"
     :ticked.sync="ticked"
     :filter="tickFilter"
-    :selected.sync="selectedNode"
+    :selected.sync="selectedNodeID"
     ref="tlTree"
     :duration=10
     :expanded.sync="expandedNode"
@@ -33,7 +33,7 @@
         <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
         <q-icon name="mdi-format-list-bulleted" v-else-if="prop.node.type === 'testcase'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
         <span v-bind:class="[{'bg-orange-2' : prop.node.primary}, {'bg-light-blue-1': prop.node.dependency && prop.node.dependency !== ''}, {'text-light': prop.node.hasOwnProperty('enabled') && !prop.node.enabled}]">{{ prop.node.name }}</span>
-        <category-menu v-if="prop.node.type === 'category'" :category="prop.node"></category-menu>
+        <category-menu v-if="prop.node.type === 'category'" :category="selectedNode"></category-menu>
         <test-suite-menu v-if="prop.node.type === 'testsuite'" :testsuite="prop.node"></test-suite-menu>
         <test-group-menu v-if="prop.node.type === 'testgroup'" :testgroup="prop.node"></test-group-menu>
         <test-case-menu v-if="prop.node.type === 'testcase'" :testcase="prop.node"></test-case-menu>
@@ -89,15 +89,20 @@ export default {
           this.focusTCTab(node._id)
           break
         default:
+
           this.debug = node
           this.focusTCTab('debug')
           break
       }
-      this.selectedNode = node._id
+      this.selectedNodeID = node._id
+      this.changeSelectedNode(node)
     },
     focusTCTab(tcID){
       this.activeTab = tcID
-    }
+    },
+    ...mapActions({
+      changeSelectedNode: 'testplan/changeSelectedNode'
+    })
   },
   created () {
     getTestPlanTree().then((result) => {
@@ -106,6 +111,9 @@ export default {
     })
   },
   computed: {
+    ...mapGetters({ 
+      selectedNode: 'testplan/selectedNode' 
+    }),
     tlTreeViewData:{
       get () {
         return this.$store.state.testplan.treeViewData
@@ -114,12 +122,12 @@ export default {
         this.$store.dispatch("testplan/changeTreeViewData", value);
       }
     },
-    selectedNode: {
+    selectedNodeID: {
       get () {
-        return this.$store.state.testplan.selectedNode
+        return this.$store.state.testplan.selectedNodeID
       },
       set (val) {
-        this.$store.dispatch('testplan/changeSelectedNode', val)
+        this.$store.dispatch('testplan/changeSelectedNodeID', val)
       }
     },
     openedTCs: {

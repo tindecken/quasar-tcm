@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      changeSelectedNode: 'testplan/changeSelectedNode'
+      changeSelectedNodeID: 'testplan/changeSelectedNodeID'
     }),
     clearForm() {
       this.cat_name = ''
@@ -107,7 +107,7 @@ export default {
       }
       if(close) {
         this.cancel()
-        this.changeSelectedNode(utils.toCodeName('category', this.cat_name))
+        this.changeSelectedNodeID(utils.toCodeName('category', this.cat_name))
       }else{
         this.clearForm()
         this.$refs.inputName.focus()
