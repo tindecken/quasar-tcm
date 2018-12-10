@@ -34,6 +34,15 @@ export const createCategory = (state, payload) => {
   Vue.set(state.treeViewData, state.treeViewData.length, payload)
 }
 
+export const createTestSuite = (state, payload) => {
+  const cat_id = payload.cat_id
+  const addFirst = payload.addFirst
+  const testsuite = payload.testsuite
+  const catIndex = _.findIndex(state.treeViewData, cat => cat._id === cat_id)
+  if(addFirst) state.treeViewData[catIndex].children.unshift(testsuite)
+	else state.treeViewData[catIndex].children.push(testsuite)
+}
+
 //START - show/hidden dialogs
 
 //New Category Modal

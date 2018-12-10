@@ -31,6 +31,12 @@ export const createCategory = ({commit}, payload) => {
   commit('createCategory', payload)
 }
 
+export const createTestSuite = ({commit}, payload) => {
+  commit('createTestSuite', payload)
+}
+
+
+
 
 //START - show/hidden dialogs
 

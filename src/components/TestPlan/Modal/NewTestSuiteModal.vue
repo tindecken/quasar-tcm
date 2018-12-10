@@ -82,7 +82,7 @@ export default {
   methods: {
     ...mapActions({
       changeSelectedNode: 'testplan/changeSelectedNode',
-      changeTreeViewData: 'testplan/changeTreeViewData',
+      createTestSuite: 'testplan/createTestSuite',
     }),
     clearForm() {
       this.suite_name = ''
@@ -110,9 +110,11 @@ export default {
       }
       const isDuplicated = utils.findBy_id(this.tlTreeViewData, utils.toCodeName('testsuite', this.suite_name))
       if(typeof isDuplicated === "undefined"){
-        const updatedTLTreeData = utils.createTestSuite(this.tlTreeViewData, this.selectedCategory._id, testsuite, this.addFirst)
-        this.changeTreeViewData(updatedTLTreeData)
-        this.cancel()
+        this.createTestSuite({
+          cat_id: this.selectedCategory._id,
+          testsuite: testsuite,
+          addFirst: this.addFirst
+        })
         this.changeSelectedNode(utils.toCodeName('testsuite', this.suite_name))
         this.$q.notify({message: `Create Test Suite success`, position: "bottom-right", color: "positive"})
       }else{

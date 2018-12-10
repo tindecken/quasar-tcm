@@ -24,12 +24,12 @@ function findBy_id(o, id) {
     }
     let result, p;
     for (p in o) {
-        if( o.hasOwnProperty(p) && typeof o[p] === 'object' ) {
-            result = findBy_id(o[p], id);
-            if(result){
-                return result;
-            }
+      if( o.hasOwnProperty(p) && typeof o[p] === 'object' ) {
+        result = findBy_id(o[p], id);
+        if(result){
+            return result;
         }
+      }
     }
     return result;
 }
@@ -83,11 +83,11 @@ function editCategory(tlTreeData, cat_id, newCategory){
     console.log('obj', tlTreeData)
     console.log('cat_id', cat_id)
     console.log('newCategory', newCategory)
-    
+
     const objIndex = tlTreeData.findIndex(obj => obj._id === cat_id)
 
-    const updatedObj = { 
-        ...tlTreeData[objIndex], 
+    const updatedObj = {
+        ...tlTreeData[objIndex],
         name: newCategory.name,
         description: newCategory.description,
         work_items: newCategory.work_items,
@@ -111,6 +111,22 @@ function deleteCategory(tlTreeData, cat_id){
     return updatedtTLTreeData
 }
 
+Array.prototype.insert = function ( index, item ) {
+	this.splice( index, 0, item );
+};
+
+function createTestSuite(tlTreeData, cat_id, testsuite, addFirst){
+	console.log('tlTreeData', tlTreeData)
+	console.log('cat_id', cat_id)
+	console.log('testsuite', testsuite)
+	console.log('addFirst', addFirst)
+	const updatedtTLTreeData = tlTreeData
+	const catIndex = _.findIndex(tlTreeData, cat => cat._id === cat_id)
+	updatedtTLTreeData[catIndex].children.push(testsuite)
+	console.log('updatedtTLTreeData', updatedtTLTreeData)
+	return updatedtTLTreeData
+}
+
 export {
-    isArray, isObject, toCodeName, findBy_id, removeBy_id, isOpened, editCategory, deleteCategory
+    isArray, isObject, toCodeName, findBy_id, removeBy_id, isOpened, editCategory, deleteCategory, createTestSuite
 }
