@@ -32,11 +32,11 @@
         <q-icon name="mdi-file-document-box-outline" v-else-if="prop.node.type === 'testsuite'" size="18px" class="q-mr-sm"  v-bind:class="prop.node.status"/>
         <q-icon name="mdi-animation-outline" v-else-if="prop.node.type === 'testgroup'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
         <q-icon name="mdi-format-list-bulleted" v-else-if="prop.node.type === 'testcase'" size="18px" class="q-mr-sm" v-bind:class="prop.node.status"/>
-        <span v-bind:class="[{'bg-orange-2' : prop.node.primary}, {'bg-light-blue-1': prop.node.dependency && prop.node.dependency !== ''}, {'text-light': prop.node.hasOwnProperty('enabled') && !prop.node.enabled}]">{{ prop.node.name }}</span>
+        <span @contextmenu.prevent="rightClick(prop.node)" v-bind:class="[{'bg-orange-2' : prop.node.primary}, {'bg-light-blue-1': prop.node.dependency && prop.node.dependency !== ''}, {'text-light': prop.node.hasOwnProperty('enabled') && !prop.node.enabled}]">{{ prop.node.name }}</span>
         <category-menu v-if="prop.node.type === 'category'" :category="selectedNode"></category-menu>
-        <test-suite-menu v-if="prop.node.type === 'testsuite'" :testsuite="prop.node"></test-suite-menu>
-        <test-group-menu v-if="prop.node.type === 'testgroup'" :testgroup="prop.node"></test-group-menu>
-        <test-case-menu v-if="prop.node.type === 'testcase'" :testcase="prop.node"></test-case-menu>
+        <test-suite-menu v-if="prop.node.type === 'testsuite'" :testsuite="selectedNode"></test-suite-menu>
+        <test-group-menu v-if="prop.node.type === 'testgroup'" :testgroup="selectedNode"></test-group-menu>
+        <test-case-menu v-if="prop.node.type === 'testcase'" :testcase="selectedNode"></test-case-menu>
       </div>
     </div>
   </q-tree>
@@ -80,6 +80,9 @@ export default {
     expandAll: function () {
       this.$refs.tlTree.expandAll()
     },
+    rightClick (node) {
+      this.changeSelectedNode(node)
+    },
     selectNode(node) {
       switch(node.type){
         case 'testcase':
@@ -111,8 +114,8 @@ export default {
     })
   },
   computed: {
-    ...mapGetters({ 
-      selectedNode: 'testplan/selectedNode' 
+    ...mapGetters({
+      selectedNode: 'testplan/selectedNode'
     }),
     tlTreeViewData:{
       get () {
@@ -154,7 +157,7 @@ export default {
         return this.$store.state.global.debug
       }
     },
-  }      
+  }
 };
 </script>
 

@@ -49,7 +49,6 @@ export default {
       this.$store.dispatch("testplan/showNewCategoryModal");
     },
     openEditCategoryModal () {
-      this.changeSelectedNode(this.cat)
       this.$root.$emit("openEditCategoryModalEvent", this.selectedNode)
       this.$store.dispatch("testplan/showEditCategoryModal");
     },

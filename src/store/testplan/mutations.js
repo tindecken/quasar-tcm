@@ -39,10 +39,12 @@ export const createCategory = (state, payload) => {
 }
 
 export const createTestSuite = (state, payload) => {
+  debugger
   const cat_id = payload.cat_id
   const addFirst = payload.addFirst
   const testsuite = payload.testsuite
   const catIndex = _.findIndex(state.treeViewData, cat => cat._id === cat_id)
+  if(catIndex === -1) console.log('Error', 'createTestSuite, catIndex = -1')
   if(addFirst) state.treeViewData[catIndex].children.unshift(testsuite)
 	else state.treeViewData[catIndex].children.push(testsuite)
 }

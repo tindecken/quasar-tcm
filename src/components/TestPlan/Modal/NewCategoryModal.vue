@@ -27,14 +27,14 @@
         <div class="row justify-end">
           <div class="col-7">
             <q-btn
-              outline 
+              outline
               color="primary"
               label="Cancel"
               class="float-right"
               @click="cancel()"
             />
             <q-btn
-              outline 
+              outline
               color="primary"
               label="Create"
               class="float-right q-mr-sm"
@@ -42,7 +42,7 @@
               :disable="$v.$invalid"
             />
             <q-btn
-              outline 
+              outline
               color="primary"
               label="Create & Close"
               class="float-right q-mr-sm"
@@ -91,15 +91,16 @@ export default {
     create (close) {
       const isDuplicated = utils.findBy_id(this.tlTreeViewData, utils.toCodeName('category', this.cat_name))
       if(typeof isDuplicated === "undefined"){
-        this.$store.dispatch('testplan/createCategory', { 
-          name: this.cat_name, 
-          description: this.cat_description, 
-          user: this.currentUser.email, 
-          type: 'category', 
-          _id: utils.toCodeName('category',this.cat_name), 
-          testsuites: [], 
-          status: '', 
-          work_items: this.arr_work_items
+        this.$store.dispatch('testplan/createCategory', {
+          name: this.cat_name,
+          description: this.cat_description,
+          user: this.currentUser.email,
+          type: 'category',
+          _id: utils.toCodeName('category',this.cat_name),
+          testsuites: [],
+          status: '',
+          work_items: this.arr_work_items,
+          children: []
         })
         this.$q.notify({message: `Create category success`, position: "bottom-right", color: "positive"})
       }else{
@@ -118,7 +119,7 @@ export default {
     this.$root.$on("openNewCategoryModalEvent", this.clearForm)
   },
   computed: {
-    ...mapGetters({ 
+    ...mapGetters({
       newCategoryModal: 'testplan/newCategoryModal',
       currentUser: 'auth/currentUser',
       tlTreeViewData: 'testplan/treeViewData'
