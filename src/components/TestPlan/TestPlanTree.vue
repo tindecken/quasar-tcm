@@ -85,7 +85,6 @@ export default {
       this.changeSelectedNode(node)
     },
     newCategory () {
-      console.log('New Category')
       this.$root.$emit("openNewCategoryModalEvent")
       this.$store.dispatch("testplan/showNewCategoryModal")
     },
@@ -98,7 +97,6 @@ export default {
           this.focusTCTab(node._id)
           break
         default:
-
           this.debug = node
           this.focusTCTab('debug')
           break
