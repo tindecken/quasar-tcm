@@ -10,8 +10,9 @@
     placeholder="Type to search"
     :before="[{icon: 'mdi-magnify', handler () {}}]"
   />
-  <q-btn outline dense color="primary" icon="mdi-arrow-collapse-all" size="md"  v-on:click="collapseAll()"/>
-  <q-btn outline dense color="primary" icon="mdi-arrow-expand-all" size="md"  v-on:click="expandAll()"/>
+  <q-btn outline dense color="primary" v-if="tlTreeViewData.length === 0" size="lg"  @click="newCategory" label="Create New Category"/>
+  <q-btn outline dense color="primary" v-if="tlTreeViewData.length !== 0" icon="mdi-arrow-collapse-all" size="md"  v-on:click="collapseAll()"/>
+  <q-btn outline dense color="primary" v-if="tlTreeViewData.length !== 0" icon="mdi-arrow-expand-all" size="md"  v-on:click="expandAll()"/>
   <q-tree
     default-expand-all
     :nodes="tlTreeViewData"
@@ -24,7 +25,7 @@
     ref="tlTree"
     :duration=10
     :expanded.sync="expandedNode"
-    no-nodes-label="No Category"
+    no-nodes-label=" "
   >
     <div slot="default-header" slot-scope="prop">
       <div v-on:click.stop="selectNode(prop.node)">
@@ -82,6 +83,11 @@ export default {
     },
     rightClick (node) {
       this.changeSelectedNode(node)
+    },
+    newCategory () {
+      console.log('New Category')
+      this.$root.$emit("openNewCategoryModalEvent")
+      this.$store.dispatch("testplan/showNewCategoryModal")
     },
     selectNode(node) {
       switch(node.type){
