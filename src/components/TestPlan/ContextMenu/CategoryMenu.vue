@@ -53,11 +53,11 @@ export default {
       this.$store.dispatch("testplan/showEditCategoryModal");
     },
     openDeleteCategoryModal () {
-      this.$root.$emit("openDeleteCategoryModalEvent", this.cat)
+      this.$root.$emit("openDeleteCategoryModalEvent", this.selectedNode)
       this.$store.dispatch("testplan/showDeleteCategoryModal");
     },
     openNewTestSuiteModal () {
-      this.$root.$emit("openNewTestSuiteModalEvent", this.cat)
+      this.$root.$emit("openNewTestSuiteModalEvent", this.selectedNode)
       this.$store.dispatch("testplan/showNewTestSuiteModal");
     },
     ...mapActions({
@@ -65,8 +65,8 @@ export default {
     })
   },
   computed: {
-    ...mapGetters({ 
-      selectedNode: 'testplan/selectedNode' 
+    ...mapGetters({
+      selectedNode: 'testplan/selectedNode'
     }),
   }
 }
